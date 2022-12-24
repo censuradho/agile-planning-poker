@@ -1,19 +1,11 @@
 import { memo } from 'react'
 import { theme } from 'stitches.config'
 import { icons } from './icons'
+import { IconProps } from './types'
 
-export type IconNames = keyof typeof icons
+function BaseIcon (props: IconProps) {
+  const { name, color, customColor, ...otherProps } = props
 
-type Colors = keyof typeof theme['colors']
-
-interface IconProps {
-  name: IconNames;
-  size?: number;
-  color?: Colors;
-  customColor?: string
-}
-
-function BaseIcon ({ name, color, customColor, ...props }: IconProps) {
   const Component = icons?.[name]
 
   const fill = customColor || (color && theme?.colors[color].value)
@@ -21,7 +13,7 @@ function BaseIcon ({ name, color, customColor, ...props }: IconProps) {
   return (
     <Component
       size={20}
-      {...props}
+      {...otherProps}
       style={{
         ...(fill && { fill })
       }}

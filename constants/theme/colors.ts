@@ -21,5 +21,6 @@ export const colors = {
   foregroundActive: '#333',
   white: '#fff',
   text: '#99A29E',
-  heading: '#ffff'
+  heading: '#ffff',
+  error: '#e74c3c'
 }

@@ -1,6 +1,7 @@
 import { createStitches } from '@stitches/react'
 
 import {
+  breakpoints,
   colors,
   fontSizes
 } from 'constants/theme'
@@ -9,7 +10,8 @@ const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createT
   theme: {
     colors,
     fontSizes
-  }
+  },
+  media: breakpoints
 })
 
 const globalStyle = GlobalCss({

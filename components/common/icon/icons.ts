@@ -1,7 +1,13 @@
 import { FiLogIn } from '@meronex/icons/fi/'
-import { BiUserPin } from '@meronex/icons/bi'
+import {
+  BiUserPin,
+  BiMenuAltRight
+} from '@meronex/icons/bi'
+import { AiOutlineClose } from '@meronex/icons/ai'
 
 export const icons = {
   login: FiLogIn,
-  userPin: BiUserPin
+  userPin: BiUserPin,
+  close: AiOutlineClose,
+  menuAltRight: BiMenuAltRight
 }

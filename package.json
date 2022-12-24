@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^2.9.10",
     "@meronex/icons": "^4.0.0",
     "@next/font": "13.1.0",
+    "@radix-ui/react-alert-dialog": "^1.0.2",
     "@stitches/react": "^1.2.8",
     "@types/node": "18.11.17",
     "@types/react": "18.0.26",

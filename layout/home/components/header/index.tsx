@@ -11,6 +11,10 @@ export function Header () {
             <Icon name="login" />
             <span>Login</span>
           </li>
+          <li>
+            <Icon name="userPin" />
+            <span>Sign up</span>
+          </li>
         </ul>
       </Styles.Navigation>
     </Styles.Header>

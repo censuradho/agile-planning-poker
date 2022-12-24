@@ -23,6 +23,9 @@ export const Input = styled('input', {
   height: '3rem',
   outline: 'none',
   padding: '0 1rem',
+  background: 'none',
+  borderRadius: '5px',
+
   '&::placeholder': {
     color: '$placeholders',
     fontSize: '0.8rem',

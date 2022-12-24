@@ -58,7 +58,8 @@ const globalStyle = GlobalCss({
   },
   a: {
     fontWeight: 500,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    textDecoration: 'none'
   }
 })
 

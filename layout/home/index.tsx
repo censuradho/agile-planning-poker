@@ -6,6 +6,7 @@ import { Box, Button, Container } from 'components/common'
 
 import { Header } from './components'
 import * as Styles from './styles'
+import { paths } from 'constants/theme/routes'
 
 export function HomeLayout () {
   return (
@@ -32,7 +33,7 @@ export function HomeLayout () {
               >
                 <h1>Fun, easy and reliable estimations</h1>
                 <p>Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor.</p>
-                <Button>Start new game</Button>
+                <Button as="a" href={paths.newGame}>Start new game</Button>
               </Box>
               <Image width={300} src={cardsImg} alt="cards" />
             </Styles.Box1>

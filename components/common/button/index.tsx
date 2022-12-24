@@ -24,7 +24,6 @@ function BaseButton (props: ButtonProps) {
 
   const renderButton = () => (
     <Styles.Button
-      as={as}
       type={type}
       disabled={disabled || loading}
       {...otherProps}

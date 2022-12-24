@@ -32,7 +32,9 @@ export const Root = styled(AlertDialog.Root, {
   width: '100%'
 })
 
-export const Portal = styled(AlertDialog.Portal, {})
+export const Portal = styled(AlertDialog.Portal, {
+
+})
 
 export const Trigger = styled(AlertDialog.Trigger, {})
 
@@ -54,6 +56,7 @@ export const Content = styled(AlertDialog.Content, {
   '&:focus': {
     outline: 'none'
   }
+
 })
 
 export const List = styled('ul', {
@@ -67,4 +70,26 @@ export const Item = styled('li', {
   display: 'flex',
   alignItems: 'center',
   gap: '1rem'
+})
+
+export const Navigation = styled('nav', {
+  ul: {
+    display: 'flex',
+    gap: '1rem',
+
+    li: {
+      '&:hover': {
+        color: '$heading',
+        cursor: 'pointer'
+      }
+    }
+  }
+})
+
+export const NavContainer = styled('div', {
+  width: '100%',
+  flex: 1,
+  display: 'flex',
+  justifyContent: 'flex-end',
+  gap: '2rem'
 })

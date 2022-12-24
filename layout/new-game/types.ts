@@ -1,3 +1,3 @@
 export interface NewGameFormData {
-  gameName: string
+  name: string
 }

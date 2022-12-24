@@ -40,7 +40,7 @@ export const Container = styled('div', {
       flexStart: {
         justifyContent: 'flex-start'
       },
-      flexEnd: {
+      'flex-end': {
         justifyContent: 'flex-end'
       }
     }

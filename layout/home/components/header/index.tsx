@@ -2,6 +2,9 @@ import { Box, Button, Icon } from 'components/common'
 import * as Styles from './styles'
 import dynamic from 'next/dynamic'
 
+import router from 'next/router'
+import { paths } from 'constants/theme/routes'
+
 const HiddenView = dynamic(() => import('components/common/hidden-view').then(mod => mod.HiddenView), {
   ssr: false
 })
@@ -18,7 +21,7 @@ export function Header () {
               <li>Sign up</li>
             </ul>
           </Styles.Navigation>
-          <Button variant="stroke">Start new game</Button>
+          <Button variant="stroke" onClick={() => router.push(paths.newGame)}>Start new game</Button>
         </Styles.NavContainer>
         <HiddenView breakpoint="laptops-min">
           <Styles.Trigger>

@@ -9,8 +9,12 @@ import * as Styles from './styles'
 import { newGameSchemaValidation } from './validations'
 import type { NewGameFormData } from './types'
 import { paths } from 'constants/theme/routes'
+import { useBoard } from 'context/board'
+import { resolvePath } from 'utils/helpers'
 
 export function NewGameLayout () {
+  const { createBoard } = useBoard()
+
   const {
     register,
     handleSubmit,
@@ -19,8 +23,10 @@ export function NewGameLayout () {
     resolver: yupResolver(newGameSchemaValidation)
   })
 
-  const onSubmit = (payload: NewGameFormData) => {
+  const onSubmit = async (payload: NewGameFormData) => {
+    const board = await createBoard(payload)
 
+    router.push(resolvePath(paths.board, { id: board.id }))
   }
 
   return (
@@ -46,10 +52,10 @@ export function NewGameLayout () {
           <Box flexDirection="column" gap={0.5} marginTop={2}>
             <Input
               label="Game's name"
-              name="gameName"
-              id="gameName"
-              register={register('gameName')}
-              errorMessage={errors?.gameName?.message}
+              name="name"
+              id="name"
+              register={register('name')}
+              errorMessage={errors?.name?.message}
             />
           </Box>
           <Box marginTop={2}>

@@ -91,5 +91,9 @@ export const NavContainer = styled('div', {
   flex: 1,
   display: 'flex',
   justifyContent: 'flex-end',
-  gap: '2rem'
+  gap: '2rem',
+
+  '@laptops-max': {
+    display: 'none'
+  }
 })

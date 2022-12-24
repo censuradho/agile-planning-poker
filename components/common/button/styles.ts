@@ -8,6 +8,7 @@ export const Button = styled('button', {
   justifyContent: 'center',
   position: 'relative',
   whiteSpace: 'nowrap',
+  borderRadius: '3px',
 
   '&:disabled': {
     background: '$primaryDark'
@@ -19,11 +20,20 @@ export const Button = styled('button', {
       }
     },
     variant: {
+      primary: {
+        background: '$primary',
+        padding: '1rem',
+        '&:hover': {
+          background: '$primaryActive'
+        },
+        '> *': {
+          color: '$heading'
+        }
+      },
       stroke: {
         background: 'none',
         border: '1px solid $foregroundActive',
         padding: '0.3rem 1rem',
-        borderRadius: '3px',
 
         '&:hover': {
           background: '$foregroundActive'

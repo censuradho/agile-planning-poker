@@ -4,10 +4,8 @@ import { Container } from './styles'
 
 type ViewStyle = Pick<
   CSSProperties,
-  | 'alignItems'
   | 'alignSelf'
   | 'alignContent'
-  | 'justifyContent'
   | 'flex'
   | 'marginBottom'
   | 'marginRight'
@@ -23,12 +21,23 @@ interface BoxProps extends ViewStyle, ComponentProps<typeof Container> {
 }
 
 export function Box (props: BoxProps) {
-  const { children, fullWidth, gap, marginTop, flexDirection, ...otherProps } =
+  const {
+    children,
+    fullWidth,
+    gap,
+    marginTop,
+    justifyContent,
+    flexDirection,
+    alignItems,
+    ...otherProps
+  } =
     props
 
   return (
     <Container
       flexDirection={flexDirection}
+      alignItems={alignItems}
+      justifyContent={justifyContent}
       style={{
         ...otherProps,
         display: 'flex',

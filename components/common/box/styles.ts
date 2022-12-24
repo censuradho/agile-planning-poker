@@ -21,6 +21,28 @@ export const Container = styled('div', {
       unset: {
         flexDirection: 'unset'
       }
+    },
+    alignItems: {
+      flexStart: {
+        alignItems: 'flex-start'
+      },
+      flexEnd: {
+        alignItems: 'flex-end'
+      },
+      center: {
+        alignItems: 'center'
+      }
+    },
+    justifyContent: {
+      center: {
+        justifyContent: 'center'
+      },
+      flexStart: {
+        justifyContent: 'flex-start'
+      },
+      flexEnd: {
+        justifyContent: 'flex-end'
+      }
     }
   }
 })

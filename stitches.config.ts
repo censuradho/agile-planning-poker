@@ -42,7 +42,6 @@ const globalStyle = GlobalCss({
     fontWeight: '500',
     lineHeight: '4.3rem'
   },
-
   p: {
     fontFamily: '$text',
     lineHeight: '2rem'

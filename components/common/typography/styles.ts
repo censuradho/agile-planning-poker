@@ -16,6 +16,25 @@ export const Typography = styled('span', {
   alignContent: 'baseline',
   variants: {
     size: fontSizesVariants,
-    color: colorsVariants
+    color: colorsVariants,
+    textAlign: {
+      center: {
+        textAlign: 'center'
+      },
+      left: {
+        textAlign: 'left'
+      }
+    },
+    fontWeight: {
+      400: {
+        fontWeight: 400
+      },
+      500: {
+        fontWeight: 500
+      },
+      600: {
+        fontWeight: 600
+      }
+    }
   }
 })

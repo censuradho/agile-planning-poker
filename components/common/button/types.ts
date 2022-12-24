@@ -1,14 +1,14 @@
-import { LinkProps } from 'next/link';
+import { LinkProps } from 'next/link'
 
-import { VariantProps } from '@stitches/react';
-import { Icon } from 'components/common';
+import { VariantProps } from '@stitches/react'
+import { Icon } from 'components/common'
 import {
   ComponentProps,
   ButtonHTMLAttributes,
   ReactNode,
-  AnchorHTMLAttributes,
-} from 'react';
-import { Button } from './styles';
+  AnchorHTMLAttributes
+} from 'react'
+import { Button } from './styles'
 
 type RootButtonProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,

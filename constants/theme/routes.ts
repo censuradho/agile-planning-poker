@@ -1,3 +1,4 @@
 export const paths = {
-  newGame: '/new-game'
+  newGame: '/new-game',
+  home: '/'
 }

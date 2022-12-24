@@ -23,11 +23,13 @@ export const Button = styled('button', {
       primary: {
         background: '$primary',
         padding: '1rem',
+
         '&:hover': {
           background: '$primaryActive'
         },
         '> *': {
           color: '$heading'
+
         }
       },
       stroke: {
@@ -41,6 +43,12 @@ export const Button = styled('button', {
         '> *': {
           color: '$white',
           fontSize: '$xsm'
+        }
+      },
+      letter: {
+        background: 'none',
+        '> *': {
+          color: '$heading'
         }
       }
     }

@@ -7,11 +7,21 @@ export const Main = styled('main', {
   height: '100vh'
 })
 
-export const Form = styled('form', {
+export const Content = styled('section', {
   width: '100%',
-  maxWidth: '25rem',
+  maxWidth: '32rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem'
+})
+
+export const Form = styled('form', {
+
   strong: {
     fontSize: '$sm',
-    color: '$heading'
+    color: '$heading',
+    textAlign: 'center',
+    width: '100%',
+    display: 'inline-block'
   }
 })

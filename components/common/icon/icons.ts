@@ -7,7 +7,10 @@ import {
   AiOutlineClose,
   AiOutlineArrowLeft
 } from '@meronex/icons/ai'
-import { IosArrowBack } from '@meronex/icons/ios'
+import {
+  IosArrowBack,
+  IosList
+} from '@meronex/icons/ios'
 
 export const icons = {
   login: FiLogIn,
@@ -15,5 +18,6 @@ export const icons = {
   close: AiOutlineClose,
   menuAltRight: BiMenuAltRight,
   arrowBack: IosArrowBack,
-  arrowBackward: AiOutlineArrowLeft
+  arrowBackward: AiOutlineArrowLeft,
+  list: IosList
 }

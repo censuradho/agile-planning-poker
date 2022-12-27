@@ -37,8 +37,11 @@ export const Container = styled('div', {
       center: {
         justifyContent: 'center'
       },
-      flexStart: {
+      'flex-start': {
         justifyContent: 'flex-start'
+      },
+      'space-between': {
+        justifyContent: 'space-between'
       },
       'flex-end': {
         justifyContent: 'flex-end'

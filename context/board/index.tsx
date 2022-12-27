@@ -6,7 +6,7 @@ import type {
 } from 'lib/firestore/types'
 
 import { BoardContextParams } from './types'
-import { createBoard } from 'lib/firestore'
+import { createBoard, getBoard } from 'lib/firestore'
 
 const BoardContext = createContext({} as BoardContextParams)
 
@@ -20,11 +20,17 @@ export function BoardProvider ({ children }: any) {
     return board
   }
 
+  const handleGetBoard = async (id: string) => {
+    const board = await getBoard(id)
+    setBoard(board)
+  }
+
   return (
     <BoardContext.Provider
       value={{
         board,
-        createBoard: handleCreateBoard
+        createBoard: handleCreateBoard,
+        getBoard: handleGetBoard
       }}
     >
       {children}

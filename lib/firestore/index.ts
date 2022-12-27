@@ -1,12 +1,15 @@
-import { firestore } from '../firebase'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { firestore } from 'lib/firebase'
 
 import { uuid } from 'uuidv4'
 
 import { CreateBoardRequest, Board } from './types'
 
-import { doc, getDoc, setDoc } from 'firebase/firestore'
-
 const COLLECTION_BOARD = 'board'
+
+export async function getBoard (id: string) {
+  return (await getDoc(doc(firestore, COLLECTION_BOARD, id))).data() as Board
+}
 
 export async function createBoard (payload: CreateBoardRequest) {
   const id = uuid()
@@ -18,5 +21,5 @@ export async function createBoard (payload: CreateBoardRequest) {
     name
   })
 
-  return (await getDoc(doc(firestore, COLLECTION_BOARD, id))).data() as Board
+  return await getBoard(id)
 }

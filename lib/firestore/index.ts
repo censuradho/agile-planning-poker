@@ -7,7 +7,8 @@ import {
   CreateBoardRequest,
   Board,
   CreateIssueRequest,
-  IIssue
+  IIssue,
+  UpdateBoardRequest
 } from './types'
 
 const COLLECTION_BOARD = 'board'
@@ -56,7 +57,23 @@ export async function createIssue (boardId: string, payload: CreateIssueRequest)
 export async function updateIssue (boardId: string, issueId: string, payload: Partial<IIssue>) {
   const data = await getBoard(boardId)
 
-  if (!data) throw new Error('Game not found')
+  if (!data) throw new Error('Board not found')
 
   const issue = data?.issues?.[issueId]
+
+  if (!issue) throw new Error('Issue not found')
+
+  const newIssueData = {
+    ...issue,
+    ...payload
+  }
+
+  const board: UpdateBoardRequest = {
+    issues: {
+      ...(data?.issues || {}),
+      [issue.id]: newIssueData
+    }
+  }
+
+  await updateBoard(boardId, board)
 }

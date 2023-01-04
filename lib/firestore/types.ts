@@ -16,3 +16,7 @@ export interface CreateBoardRequest extends
 }
 
 export type CreateIssueRequest = Pick<IIssue, 'value'>
+
+export type UpdateBoardRequest = Partial<Board>
+
+export type UpdateIssueRequest = Partial<IIssue>

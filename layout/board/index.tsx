@@ -7,11 +7,25 @@ import router from 'next/router'
 import { useEffect } from 'react'
 
 export function BoardLayout () {
-  const { board, getBoard } = useBoard()
+  const {
+    board,
+    getBoard,
+    issueActive
+  } = useBoard()
 
   useEffect(() => {
     getBoard(router.query.id as string)
   }, [])
+
+  const renderCurrentIssue = () => {
+    if (!issueActive) return null
+
+    return (
+      <Box>
+        <Styles.IssueLabel>{`Votting ${issueActive.value}`}</Styles.IssueLabel>
+      </Box>
+    )
+  }
 
   return (
     <Styles.Container>
@@ -24,6 +38,9 @@ export function BoardLayout () {
           <Issue />
         </Box>
       </Styles.Header>
+      <Styles.Main>
+        {renderCurrentIssue()}
+      </Styles.Main>
     </Styles.Container>
   )
 }

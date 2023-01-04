@@ -40,7 +40,18 @@ export const Content = styled(AlertDialog.Content, {
   borderRadios: 0,
   animation: `${contentShow} 0.3s cubic-bezier(0.16, 1, 0.3, 1)`,
   padding: '1rem',
+  display: 'flex',
+  flexDirection: 'column',
   '&:focus': {
     outline: 'none'
   }
+})
+
+export const List = styled('ul', {
+  margin: '2rem 0',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+  flex: 1,
+  overflowY: 'auto'
 })

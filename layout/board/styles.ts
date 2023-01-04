@@ -12,3 +12,17 @@ export const Header = styled('header', {
   alignItems: 'center',
   padding: '0 1rem'
 })
+
+export const Main = styled('main', {
+  width: '100%',
+  height: '100%',
+  padding: '1rem'
+})
+
+export const IssueLabel = styled('span', {
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  width: '300px'
+
+})

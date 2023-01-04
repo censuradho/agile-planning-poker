@@ -11,6 +11,7 @@ import {
   IosArrowBack,
   IosList
 } from '@meronex/icons/ios'
+import { BsThreeDotsVertical } from '@meronex/icons/bs'
 
 export const icons = {
   login: FiLogIn,
@@ -19,5 +20,6 @@ export const icons = {
   menuAltRight: BiMenuAltRight,
   arrowBack: IosArrowBack,
   arrowBackward: AiOutlineArrowLeft,
-  list: IosList
+  list: IosList,
+  threeDotsVertical: BsThreeDotsVertical
 }

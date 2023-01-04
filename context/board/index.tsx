@@ -2,7 +2,8 @@ import { createContext, useContext, useState } from 'react'
 
 import type {
   Board,
-  CreateBoardRequest
+  CreateBoardRequest,
+  IIssue
 } from 'lib/firestore/types'
 
 import { BoardContextParams } from './types'
@@ -12,6 +13,8 @@ const BoardContext = createContext({} as BoardContextParams)
 
 export function BoardProvider ({ children }: any) {
   const [board, setBoard] = useState<Board | null>(null)
+  const [issues, setIssues] = useState<IIssue[]>([])
+  const [issueActive, setIssueActive] = useState<IIssue>()
 
   const handleCreateBoard = async (payload: CreateBoardRequest) => {
     const board = await createBoard(payload)
@@ -29,6 +32,10 @@ export function BoardProvider ({ children }: any) {
     <BoardContext.Provider
       value={{
         board,
+        issues,
+        setIssues,
+        issueActive,
+        setIssueActive,
         createBoard: handleCreateBoard,
         getBoard: handleGetBoard
       }}

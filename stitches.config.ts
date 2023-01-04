@@ -9,8 +9,12 @@ import {
 const { styled, globalCss: GlobalCss, getCssText, theme, css, keyframes, createTheme } = createStitches({
   theme: {
     colors,
-    fontSizes
+    fontSizes,
+    radii: {
+      default: '5px'
+    }
   },
+
   media: breakpoints
 })
 

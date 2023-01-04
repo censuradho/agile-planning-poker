@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { uuid } from 'uuidv4'
 
 import {
   Box,
@@ -6,12 +6,52 @@ import {
   Typography
 } from 'components/common'
 
-import { AddIssue } from './component'
+import { AddIssue, IssueItem } from './component'
 
 import * as Styles from './styles'
 
+import { useBoard } from 'context/board'
+
 export function Issue () {
-  const [issues, setIssues] = useState([])
+  const {
+    issues,
+    setIssues,
+    issueActive,
+    setIssueActive
+  } = useBoard()
+
+  const handleAdd = (value?: string) => {
+    if (!value) return
+
+    setIssues(prevState => [
+      ...prevState,
+      {
+        value,
+        id: uuid()
+      }
+    ])
+  }
+
+  const renderIssues = issues.map(issue => (
+    <li key={issue.id}>
+      <IssueItem
+        active={issueActive?.id === issue.id}
+        label={issue.value}
+        onActiveChange={() => issueActive?.id === issue.id ? setIssueActive(undefined) : setIssueActive(issue)}
+      />
+    </li>
+  ))
+
+  const renderIssueInfo = () => {
+    if (issues.length === 0) return null
+
+    return (
+      <Box gap={1} marginTop={1}>
+        <Typography>{`${issues.length + 1} issues`}</Typography>
+        <Typography>{`${0} points`}</Typography>
+      </Box>
+    )
+  }
 
   return (
     <Styles.Root>
@@ -27,7 +67,11 @@ export function Issue () {
               <Icon name="close" />
             </Styles.Cancel>
           </Box>
-          <AddIssue />
+          {renderIssueInfo()}
+          <Styles.List>
+            {renderIssues}
+          </Styles.List>
+          <AddIssue onConfirm={handleAdd} />
         </Styles.Content>
       </Styles.Portal>
     </Styles.Root>

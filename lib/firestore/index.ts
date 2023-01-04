@@ -1,14 +1,25 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore'
-import { firestore } from 'lib/firebase'
+import { doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore'
+import { firebase } from 'lib/firebase'
 
 import { uuid } from 'uuidv4'
 
-import { CreateBoardRequest, Board } from './types'
+import {
+  CreateBoardRequest,
+  Board,
+  CreateIssueRequest,
+  IIssue
+} from './types'
 
 const COLLECTION_BOARD = 'board'
 
+export const firestore = getFirestore(firebase)
+
 export async function getBoard (id: string) {
-  return (await getDoc(doc(firestore, COLLECTION_BOARD, id))).data() as Board
+  try {
+    return (await getDoc(doc(firestore, COLLECTION_BOARD, id))).data() as Board
+  } catch (err) {
+    throw new Error(err as any)
+  }
 }
 
 export async function createBoard (payload: CreateBoardRequest) {
@@ -22,4 +33,30 @@ export async function createBoard (payload: CreateBoardRequest) {
   })
 
   return await getBoard(id)
+}
+
+export async function createIssue (boardId: string, payload: CreateIssueRequest) {
+  const id = uuid()
+  const boardData = await getBoard(boardId)
+
+  const { value } = payload
+
+  const issue = await updateDoc(doc(firestore, COLLECTION_BOARD, boardId), {
+    issues: {
+      ...(boardData?.issues || {}),
+      [id]: {
+        value
+      }
+    }
+  })
+
+  return issue
+}
+
+export async function updateIssue (boardId: string, issueId: string, payload: Partial<IIssue>) {
+  const data = await getBoard(boardId)
+
+  if (!data) throw new Error('Game not found')
+
+  const issue = data?.issues?.[issueId]
 }

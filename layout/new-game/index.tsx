@@ -11,9 +11,11 @@ import type { NewGameFormData } from './types'
 import { paths } from 'constants/theme/routes'
 import { useBoard } from 'context/board'
 import { resolvePath } from 'utils/helpers'
+import { useState } from 'react'
 
 export function NewGameLayout () {
   const { createBoard } = useBoard()
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     register,
@@ -24,9 +26,13 @@ export function NewGameLayout () {
   })
 
   const onSubmit = async (payload: NewGameFormData) => {
-    const board = await createBoard(payload)
-
-    router.push(resolvePath(paths.board, { id: board.id }))
+    try {
+      const board = await createBoard(payload)
+      setIsLoading(true)
+      router.push(resolvePath(paths.board, { id: board.id }))
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -59,7 +65,7 @@ export function NewGameLayout () {
             />
           </Box>
           <Box marginTop={2}>
-            <Button fullWidth>Create game</Button>
+            <Button loading={isLoading} fullWidth>Create game</Button>
           </Box>
         </Styles.Form>
       </Styles.Content>

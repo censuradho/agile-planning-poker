@@ -7,9 +7,9 @@ import * as Styles from './styles'
 import { AddIssueProps, IssueFormData } from './types'
 
 export function AddIssue (props: AddIssueProps) {
-  const { onConfirm } = props
-
-  const { board } = useBoard()
+  const {
+    board
+  } = useBoard()
 
   const {
     register,
@@ -33,12 +33,11 @@ export function AddIssue (props: AddIssueProps) {
     const onSubmit = async (data: IssueFormData) => {
       if (!board) return
 
-      const issue = await createIssue(board.id, {
+      await createIssue(board.id, {
         value: data.value
       })
 
       setIsEditting(false)
-      onConfirm?.(data.value)
       reset()
     }
 

@@ -8,7 +8,8 @@ export interface IIssue {
 export interface Board {
   id: string
   name: string,
-  issues?: Record<string, IIssue>
+  issues?: IIssue[]
+  activeIssue?: IIssue | null
 }
 
 export interface CreateBoardRequest extends

@@ -14,33 +14,20 @@ import { useBoard } from 'context/board'
 
 export function Issue () {
   const {
+    board,
     issues,
-    setIssues,
-    issueActive,
-    setIssueActive
+    onChangeActiveIssue
   } = useBoard()
 
-  const handleAdd = (value?: string) => {
-    if (!value) return
-
-    setIssues(prevState => [
-      ...prevState,
-      {
-        value,
-        id: uuid()
-      }
-    ])
-  }
-
-  const renderIssues = issues.map(issue => (
+  const renderIssues = issues.map(issue =>
     <li key={issue.id}>
       <IssueItem
-        active={issueActive?.id === issue.id}
+        active={board?.activeIssue?.id === issue.id}
         label={issue.value}
-        onActiveChange={() => issueActive?.id === issue.id ? setIssueActive(undefined) : setIssueActive(issue)}
+        onActiveChange={() => onChangeActiveIssue?.(issue.id)}
       />
     </li>
-  ))
+  )
 
   const renderIssueInfo = () => {
     if (issues.length === 0) return null
@@ -71,7 +58,7 @@ export function Issue () {
           <Styles.List>
             {renderIssues}
           </Styles.List>
-          <AddIssue onConfirm={handleAdd} />
+          <AddIssue />
         </Styles.Content>
       </Styles.Portal>
     </Styles.Root>

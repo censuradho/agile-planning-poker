@@ -11,7 +11,7 @@ import {
   UpdateBoardRequest
 } from './types'
 
-const COLLECTION_BOARD = 'board'
+export const COLLECTION_BOARD = 'board'
 
 export const firestore = getFirestore(firebase)
 
@@ -43,12 +43,13 @@ export async function createIssue (boardId: string, payload: CreateIssueRequest)
   const { value } = payload
 
   const issue = await updateDoc(doc(firestore, COLLECTION_BOARD, boardId), {
-    issues: {
-      ...(boardData?.issues || {}),
-      [id]: {
+    issues: [
+      ...(boardData?.issues || []),
+      {
+        id,
         value
       }
-    }
+    ]
   })
 
   return issue
@@ -63,20 +64,17 @@ export async function updateIssue (boardId: string, issueId: string, payload: Pa
 
   if (!data) throw new Error('Board not found')
 
-  const issue = data?.issues?.[issueId]
-
-  if (!issue) throw new Error('Issue not found')
-
-  const newIssueData = {
-    ...issue,
-    ...payload
-  }
+  const issues = data?.issues?.map(issue =>
+    issue.id === issueId
+      ? ({
+        ...issue,
+        ...payload
+      })
+      : issue
+  )
 
   const board: UpdateBoardRequest = {
-    issues: {
-      ...(data?.issues || {}),
-      [issue.id]: newIssueData
-    }
+    issues
   }
 
   await updateBoard(boardId, board)

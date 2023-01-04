@@ -8,21 +8,15 @@ import { useEffect } from 'react'
 
 export function BoardLayout () {
   const {
-    board,
-    getBoard,
-    issueActive
+    board
   } = useBoard()
 
-  useEffect(() => {
-    getBoard(router.query.id as string)
-  }, [])
-
   const renderCurrentIssue = () => {
-    if (!issueActive) return null
+    if (!board?.activeIssue) return null
 
     return (
       <Box>
-        <Styles.IssueLabel>{`Votting ${issueActive.value}`}</Styles.IssueLabel>
+        <Styles.IssueLabel>{`Votting ${board?.activeIssue?.value}`}</Styles.IssueLabel>
       </Box>
     )
   }

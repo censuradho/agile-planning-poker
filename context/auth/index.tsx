@@ -1,5 +1,6 @@
 import { onAuthStateChanged, User } from 'firebase/auth'
-import { auth } from 'lib/auth'
+
+import { auth, signInAnonymously } from 'lib/auth'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { AuthContextParams } from './types'
 
@@ -13,10 +14,17 @@ export function AuthProvider ({ children }: any) {
       setUser(user || null)
     })
   }, [])
+
+  const handleSignInAnonymously = async () => {
+    await signInAnonymously()
+  }
+
   return (
     <AuthContext.Provider
       value={{
-        user
+        user,
+        isSigned: !!user,
+        signInAnonymously: handleSignInAnonymously
       }}
     >
       {children}

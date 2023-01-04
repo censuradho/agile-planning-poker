@@ -5,11 +5,16 @@ export interface IIssue {
   link?: string
 }
 
+interface Player {
+  id: string
+  name: string
+}
 export interface Board {
   id: string
   name: string,
   issues?: IIssue[]
   activeIssue?: IIssue | null
+  players: Player[]
 }
 
 export interface CreateBoardRequest extends

@@ -3,9 +3,6 @@ import { useBoard } from 'context/board'
 import { Issue } from './components'
 import * as Styles from './styles'
 
-import router from 'next/router'
-import { useEffect } from 'react'
-
 export function BoardLayout () {
   const {
     board

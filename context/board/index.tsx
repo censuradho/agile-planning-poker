@@ -15,11 +15,13 @@ import type {
 import { BoardContextParams } from './types'
 import { COLLECTION_BOARD, createBoard, firestore, updateBoard } from 'lib/firestore'
 import { useRouter } from 'next/router'
+import { useAuth } from 'context/auth'
 
 const BoardContext = createContext({} as BoardContextParams)
 
 export function BoardProvider ({ children }: any) {
   const router = useRouter()
+  const auth = useAuth()
 
   const { id } = router.query
 
@@ -56,6 +58,16 @@ export function BoardProvider ({ children }: any) {
     })
     return () => unsubscribe()
   }, [id])
+
+  const handleUser = async () => {
+    if (auth.isSigned) return
+
+    const anonymousUser = await auth.signInAnonymously()
+  }
+
+  useEffect(() => {
+    handleUser()
+  }, [])
 
   return (
     <BoardContext.Provider

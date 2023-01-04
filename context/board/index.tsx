@@ -5,7 +5,6 @@ import {
   useState
 } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
-import dynamic from 'next/dynamic'
 
 import type {
   Board,
@@ -13,13 +12,9 @@ import type {
 } from 'lib/firestore/types'
 
 import { BoardContextParams } from './types'
-import { COLLECTION_BOARD, createBoard, createPlayer, firestore, updateBoard } from 'lib/firestore'
+import { COLLECTION_BOARD, createBoard, firestore, updateBoard } from 'lib/firestore'
 import { useRouter } from 'next/router'
 import { useAuth } from 'context/auth'
-
-const PlayerRegister = dynamic(() => import('./components').then(mod => mod.PlayerRegister), {
-  ssr: false
-})
 
 const BoardContext = createContext({} as BoardContextParams)
 
@@ -32,7 +27,9 @@ export function BoardProvider ({ children }: any) {
   const [board, setBoard] = useState<Board | null>(null)
 
   const handleCreateBoard = async (payload: CreateBoardRequest) => {
-    const board = await createBoard(payload)
+    const board = await createBoard({
+      ...payload
+    })
     setBoard(board)
 
     return board
@@ -63,16 +60,18 @@ export function BoardProvider ({ children }: any) {
     return () => unsubscribe()
   }, [id])
 
+  const player = board?.players?.find(player => player?.id === auth?.user?.uid)
+
   return (
     <BoardContext.Provider
       value={{
         board,
         issues,
+        player,
         createBoard: handleCreateBoard,
         onChangeActiveIssue: handleChangeActiveIssue
       }}
     >
-      <PlayerRegister open={!auth?.isSigned} />
       {children}
     </BoardContext.Provider>
   )

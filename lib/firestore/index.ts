@@ -28,11 +28,9 @@ export async function getBoard (id: string) {
 export async function createBoard (payload: CreateBoardRequest) {
   const id = uuid()
 
-  const { name } = payload
-
   await setDoc(doc(firestore, COLLECTION_BOARD, id), {
     id,
-    name
+    ...payload
   })
 
   return await getBoard(id)

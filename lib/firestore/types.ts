@@ -5,7 +5,7 @@ export interface IIssue {
   link?: string
 }
 
-interface Player {
+export interface Player {
   id: string
   name: string
   isAnonymous?: boolean
@@ -20,6 +20,7 @@ export interface Board {
 
 export interface CreateBoardRequest extends
   Pick<Board, 'name'> {
+    players?: Player[]
 }
 
 export type CreateIssueRequest = Pick<IIssue, 'value'>

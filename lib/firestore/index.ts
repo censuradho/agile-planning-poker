@@ -8,7 +8,9 @@ import {
   Board,
   CreateIssueRequest,
   IIssue,
-  UpdateBoardRequest
+  UpdateBoardRequest,
+  CreatePlayerRequest,
+  UpdatePlayerRequest
 } from './types'
 
 export const COLLECTION_BOARD = 'board'
@@ -75,6 +77,40 @@ export async function updateIssue (boardId: string, issueId: string, payload: Pa
 
   const board: UpdateBoardRequest = {
     issues
+  }
+
+  await updateBoard(boardId, board)
+}
+
+export async function createPlayer (boardId: string, payload: CreatePlayerRequest) {
+  const boardData = await getBoard(boardId)
+
+  const players = await updateDoc(doc(firestore, COLLECTION_BOARD, boardId), {
+    players: [
+      ...(boardData?.players || []),
+      payload
+    ]
+  })
+
+  return players
+}
+
+export async function updatePlayer (boardId: string, playerId: string, payload: UpdatePlayerRequest) {
+  const data = await getBoard(boardId)
+
+  if (!data) throw new Error('Board not found')
+
+  const players = data?.players?.map(player =>
+    player.id === playerId
+      ? ({
+        ...player,
+        ...payload
+      })
+      : player
+  )
+
+  const board: UpdateBoardRequest = {
+    players
   }
 
   await updateBoard(boardId, board)

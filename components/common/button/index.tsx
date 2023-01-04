@@ -1,5 +1,4 @@
 import { memo } from 'react'
-import Loader from 'public/icons/loader.svg'
 
 import { Icon, Typography } from 'components/common'
 
@@ -12,16 +11,6 @@ function BaseButton (props: ButtonProps) {
   const { children, icon, loading, disabled, href, type, as, ...otherProps } =
     props
 
-  const renderLoading = () => {
-    if (!loading) return null
-
-    return (
-      <Styles.LoaderContainer>
-        <Loader />
-      </Styles.LoaderContainer>
-    )
-  }
-
   const renderButton = () => (
     <Styles.Button
       type={type}
@@ -30,7 +19,6 @@ function BaseButton (props: ButtonProps) {
     >
       {icon && <Icon {...icon} />}
       <Typography>{children}</Typography>
-      {renderLoading()}
     </Styles.Button>
   )
 

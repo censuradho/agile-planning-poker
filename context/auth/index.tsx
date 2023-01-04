@@ -16,7 +16,7 @@ export function AuthProvider ({ children }: any) {
   }, [])
 
   const handleSignInAnonymously = async () => {
-    await signInAnonymously()
+    return await signInAnonymously()
   }
 
   return (

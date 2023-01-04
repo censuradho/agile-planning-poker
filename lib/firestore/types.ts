@@ -8,6 +8,7 @@ export interface IIssue {
 interface Player {
   id: string
   name: string
+  isAnonymous?: boolean
 }
 export interface Board {
   id: string
@@ -23,6 +24,9 @@ export interface CreateBoardRequest extends
 
 export type CreateIssueRequest = Pick<IIssue, 'value'>
 
+export type CreatePlayerRequest = Pick<Player, 'name' | 'isAnonymous' | 'id'>
+
 export type UpdateBoardRequest = Partial<Board>
+export type UpdatePlayerRequest = Partial<Board>
 
 export type UpdateIssueRequest = Partial<IIssue>

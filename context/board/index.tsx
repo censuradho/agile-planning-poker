@@ -2,10 +2,10 @@ import {
   createContext,
   useContext,
   useEffect,
-  useMemo,
   useState
 } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
+import dynamic from 'next/dynamic'
 
 import type {
   Board,
@@ -13,9 +13,13 @@ import type {
 } from 'lib/firestore/types'
 
 import { BoardContextParams } from './types'
-import { COLLECTION_BOARD, createBoard, firestore, updateBoard } from 'lib/firestore'
+import { COLLECTION_BOARD, createBoard, createPlayer, firestore, updateBoard } from 'lib/firestore'
 import { useRouter } from 'next/router'
 import { useAuth } from 'context/auth'
+
+const PlayerRegister = dynamic(() => import('./components').then(mod => mod.PlayerRegister), {
+  ssr: false
+})
 
 const BoardContext = createContext({} as BoardContextParams)
 
@@ -59,16 +63,6 @@ export function BoardProvider ({ children }: any) {
     return () => unsubscribe()
   }, [id])
 
-  const handleUser = async () => {
-    if (auth.isSigned) return
-
-    const anonymousUser = await auth.signInAnonymously()
-  }
-
-  useEffect(() => {
-    handleUser()
-  }, [])
-
   return (
     <BoardContext.Provider
       value={{
@@ -78,6 +72,7 @@ export function BoardProvider ({ children }: any) {
         onChangeActiveIssue: handleChangeActiveIssue
       }}
     >
+      <PlayerRegister open={!auth?.isSigned} />
       {children}
     </BoardContext.Provider>
   )

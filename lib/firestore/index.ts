@@ -54,6 +54,10 @@ export async function createIssue (boardId: string, payload: CreateIssueRequest)
   return issue
 }
 
+export async function updateBoard (boardId: string, payload: UpdateBoardRequest) {
+  await updateDoc(doc(firestore, COLLECTION_BOARD, boardId), payload)
+}
+
 export async function updateIssue (boardId: string, issueId: string, payload: Partial<IIssue>) {
   const data = await getBoard(boardId)
 

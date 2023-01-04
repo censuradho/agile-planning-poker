@@ -34,7 +34,7 @@ export function Issue () {
 
     return (
       <Box gap={1} marginTop={1}>
-        <Typography>{`${issues.length + 1} issues`}</Typography>
+        <Typography>{`${issues.length} issues`}</Typography>
         <Typography>{`${0} points`}</Typography>
       </Box>
     )

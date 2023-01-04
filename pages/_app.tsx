@@ -1,3 +1,4 @@
+import { AuthProvider } from 'context/auth'
 import { BoardProvider } from 'context/board'
 import type { AppProps } from 'next/app'
 import { useEffect } from 'react'
@@ -9,8 +10,10 @@ export default function MyApp ({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <BoardProvider>
-      <Component {...pageProps} />
-    </BoardProvider>
+    <AuthProvider>
+      <BoardProvider>
+        <Component {...pageProps} />
+      </BoardProvider>
+    </AuthProvider>
   )
 }

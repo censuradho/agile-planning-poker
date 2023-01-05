@@ -1,7 +1,9 @@
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
-
+  minHeight: '100vh',
+  display: 'flex',
+  flexDirection: 'column'
 })
 
 export const Header = styled('header', {
@@ -14,9 +16,10 @@ export const Header = styled('header', {
 })
 
 export const Main = styled('main', {
-  width: '100%',
-  height: '100%',
-  padding: '1rem'
+  flex: 1,
+  padding: '1rem',
+  display: 'flex',
+  flexDirection: 'column'
 })
 
 export const IssueLabel = styled('span', {
@@ -25,4 +28,13 @@ export const IssueLabel = styled('span', {
   overflow: 'hidden',
   width: '300px'
 
+})
+
+export const Hand = styled('div', {
+  marginTop: 'auto',
+
+  '@laptops-min': {
+    display: 'flex',
+    justifyContent: 'center'
+  }
 })

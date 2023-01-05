@@ -5,6 +5,7 @@ import { useBoard } from 'context/board'
 import { Issue } from './components'
 import * as Styles from './styles'
 import { useAuth } from 'context/auth'
+import { CardList } from './components/card-list'
 
 const PlayerRegister = dynamic(() => import('context/board/components').then(mod => mod.PlayerRegister), {
   ssr: false
@@ -43,6 +44,9 @@ export function BoardLayout () {
         </Styles.Header>
         <Styles.Main>
           {renderCurrentIssue()}
+          <Styles.Hand>
+            <CardList />
+          </Styles.Hand>
         </Styles.Main>
       </Styles.Container>
     </>

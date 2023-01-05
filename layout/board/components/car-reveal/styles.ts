@@ -1,6 +1,6 @@
 import { styled } from 'stitches.config'
 
-import svgBg from 'assets/card-bg.svg'
+import svgBg from 'public/bg-card.svg'
 
 export const InnerCard = styled('div', {
   position: 'relative',

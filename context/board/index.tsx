@@ -2,6 +2,7 @@ import {
   createContext,
   useContext,
   useEffect,
+  useMemo,
   useState
 } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
@@ -51,6 +52,14 @@ export function BoardProvider ({ children }: any) {
     })
   }
 
+  const participants = useMemo(() =>
+    board
+      ?.players
+      ?.filter(player => player.id !== auth.user?.uid) || []
+  , [board?.players, auth.user])
+
+  const player = board?.players?.find(player => player?.id === auth?.user?.uid)
+
   useEffect(() => {
     if (!id) return
 
@@ -60,14 +69,13 @@ export function BoardProvider ({ children }: any) {
     return () => unsubscribe()
   }, [id])
 
-  const player = board?.players?.find(player => player?.id === auth?.user?.uid)
-
   return (
     <BoardContext.Provider
       value={{
         board,
         issues,
         player,
+        participants,
         createBoard: handleCreateBoard,
         onChangeActiveIssue: handleChangeActiveIssue
       }}

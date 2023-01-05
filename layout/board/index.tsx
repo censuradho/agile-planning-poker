@@ -6,6 +6,7 @@ import { Issue } from './components'
 import * as Styles from './styles'
 import { useAuth } from 'context/auth'
 import { CardList } from './components/card-list'
+import { CardReval } from './components/car-reveal'
 
 const PlayerRegister = dynamic(() => import('context/board/components').then(mod => mod.PlayerRegister), {
   ssr: false
@@ -16,7 +17,8 @@ export function BoardLayout () {
 
   const {
     board,
-    player
+    player,
+    participants
   } = useBoard()
 
   const renderCurrentIssue = () => {
@@ -28,6 +30,14 @@ export function BoardLayout () {
       </Box>
     )
   }
+
+  const renderParticipants = participants?.map(participant => (
+    <CardReval
+      key={participant.id}
+      isSpectator={participant?.isSpectator}
+      label={participant.vote || ''}
+    />
+  ))
 
   return (
     <>
@@ -44,6 +54,9 @@ export function BoardLayout () {
         </Styles.Header>
         <Styles.Main>
           {renderCurrentIssue()}
+          <Box fullWidth justifyContent="center">
+            {renderParticipants}
+          </Box>
           <Styles.Hand>
             <CardList />
           </Styles.Hand>

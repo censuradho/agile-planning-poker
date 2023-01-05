@@ -1,4 +1,6 @@
 
+import { useBoard } from 'context/board'
+import { updatePlayer } from 'lib/firestore'
 import { memo } from 'react'
 
 import * as Styles from './styles'
@@ -51,8 +53,17 @@ const fibonacci = [
 ]
 
 function BaseCardList () {
-  const handleVote = async (card: typeof fibonacci[0]) => {
+  const {
+    board,
+    player
+  } = useBoard()
 
+  const handleVote = async (card: typeof fibonacci[0]) => {
+    if (!board || !player) return
+
+    await updatePlayer(board.id, player.id, {
+      vote: card.value
+    })
   }
 
   const renderCards = fibonacci?.map((value, index) => (

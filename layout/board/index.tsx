@@ -18,7 +18,9 @@ export function BoardLayout () {
   const {
     board,
     player,
-    onReveal
+    onReveal,
+    countDown,
+    onRestart
   } = useBoard()
 
   const renderCurrentIssue = () => {
@@ -40,12 +42,23 @@ export function BoardLayout () {
   ))
 
   const renderReveal = () => {
-    if (board?.isPlaying && board?.isReveal) return null
+    if (board?.isReveal) return null
 
     return (
       <Button onClick={onReveal}>
         show cards
       </Button>
+    )
+  }
+
+  const renderRestart = () => {
+    if (!board?.isReveal) return null
+
+    return (
+      <Button
+        variant="stroke"
+        onClick={onRestart}
+      >Start new game</Button>
     )
   }
 
@@ -69,6 +82,7 @@ export function BoardLayout () {
           </Box>
           <Box justifyContent="center">
             {renderReveal()}
+            {renderRestart()}
           </Box>
           <Styles.Hand>
             <Box justifyContent="center">

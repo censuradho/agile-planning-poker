@@ -70,7 +70,8 @@ export function BoardProvider ({ children }: any) {
     if (!id) return
 
     await updateBoard(id as string, {
-      isPlaying: false
+      isPlaying: false,
+      isReveal: true
     })
   }
 
@@ -80,7 +81,7 @@ export function BoardProvider ({ children }: any) {
     const players = board?.players || []
 
     await updateBoard(id as string, {
-      isPlaying: false,
+      isPlaying: true,
       isReveal: false
     })
 
@@ -118,6 +119,7 @@ export function BoardProvider ({ children }: any) {
         issues,
         player,
         participants,
+        countDown,
         createBoard: handleCreateBoard,
         onReveal: handleRevealCards,
         onRestart: handleRestart,

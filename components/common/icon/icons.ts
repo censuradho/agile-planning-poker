@@ -5,7 +5,8 @@ import {
 } from '@meronex/icons/bi'
 import {
   AiOutlineClose,
-  AiOutlineArrowLeft
+  AiOutlineArrowLeft,
+  AiFillEye
 } from '@meronex/icons/ai'
 import {
   IosArrowBack,
@@ -21,5 +22,6 @@ export const icons = {
   arrowBack: IosArrowBack,
   arrowBackward: AiOutlineArrowLeft,
   list: IosList,
-  threeDotsVertical: BsThreeDotsVertical
+  threeDotsVertical: BsThreeDotsVertical,
+  eye: AiFillEye
 }

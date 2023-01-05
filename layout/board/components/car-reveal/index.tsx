@@ -1,4 +1,5 @@
 import { Icon } from 'components/common'
+import { useBoard } from 'context/board'
 // import { useRoom } from '@/src/providers'
 import { memo } from 'react'
 
@@ -6,12 +7,12 @@ import * as Styles from './styles'
 import { CardRevalProps } from './types'
 
 function BaseCardReval (props: CardRevalProps) {
-  // const context = useRoom()
+  const { board } = useBoard()
 
   const { label, disabled, isSpectator } = props
 
   return (
-    <Styles.Card isReval={false}>
+    <Styles.Card isReval={board?.isReveal}>
       <Styles.InnerCard>
         <Styles.Front disabled={disabled}></Styles.Front>
         <Styles.Back>

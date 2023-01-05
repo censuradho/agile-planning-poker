@@ -1,3 +1,8 @@
+export enum Roles {
+  admin = 'admin',
+  player = 'player'
+}
+
 export interface IIssue {
   value: string
   id: string
@@ -11,6 +16,7 @@ export interface Player {
   isAnonymous?: boolean
   vote?: string
   isSpectator?: boolean
+  role?: keyof typeof Roles
 }
 export interface Board {
   id: string
@@ -18,6 +24,8 @@ export interface Board {
   issues?: IIssue[]
   activeIssue?: IIssue | null
   players: Player[]
+  isPlaying?: boolean
+  isReveal?: boolean
 }
 
 export interface CreateBoardRequest extends

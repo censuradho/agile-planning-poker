@@ -12,4 +12,6 @@ export interface BoardContextParams {
   participants?: Player[]
   onChangeActiveIssue?: (issueId: string) => Promise<void>
   createBoard: (payload: CreateBoardRequest) => Promise<Board>
+  onReveal: () => Promise<void>
+  onRestart: () => Promise<void>
 }

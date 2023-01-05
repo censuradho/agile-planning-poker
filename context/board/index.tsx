@@ -7,17 +7,20 @@ import {
 } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
 
-import type {
+import {
   Board,
-  CreateBoardRequest
+  CreateBoardRequest,
+  Roles
 } from 'lib/firestore/types'
 
 import { BoardContextParams } from './types'
-import { COLLECTION_BOARD, createBoard, firestore, updateBoard } from 'lib/firestore'
+import { COLLECTION_BOARD, createBoard, firestore, updateBoard, updatePlayer } from 'lib/firestore'
 import { useRouter } from 'next/router'
 import { useAuth } from 'context/auth'
+import { useInterval } from 'hooks'
 
 const BoardContext = createContext({} as BoardContextParams)
+const baseCountDown = 3
 
 export function BoardProvider ({ children }: any) {
   const router = useRouter()
@@ -26,6 +29,19 @@ export function BoardProvider ({ children }: any) {
   const { id } = router.query
 
   const [board, setBoard] = useState<Board | null>(null)
+  const [countDown, setCountDown] = useState<number>(baseCountDown)
+
+  const participants = useMemo(() =>
+    board
+      ?.players
+      ?.filter(player => player.id !== auth.user?.uid) || []
+  , [board?.players, auth.user])
+
+  const player = board?.players?.find(player => player?.id === auth?.user?.uid)
+
+  const isAdmin = player?.role === Roles.admin
+
+  const issues = board?.issues || []
 
   const handleCreateBoard = async (payload: CreateBoardRequest) => {
     const board = await createBoard({
@@ -35,8 +51,6 @@ export function BoardProvider ({ children }: any) {
 
     return board
   }
-
-  const issues = board?.issues || []
 
   const handleChangeActiveIssue = async (issueId: string) => {
     if (!board || !board.issues) return
@@ -52,13 +66,41 @@ export function BoardProvider ({ children }: any) {
     })
   }
 
-  const participants = useMemo(() =>
-    board
-      ?.players
-      ?.filter(player => player.id !== auth.user?.uid) || []
-  , [board?.players, auth.user])
+  const handleRevealCards = async () => {
+    if (!id) return
 
-  const player = board?.players?.find(player => player?.id === auth?.user?.uid)
+    await updateBoard(id as string, {
+      isPlaying: false
+    })
+  }
+
+  const handleRestart = async () => {
+    if (!board) return
+
+    const players = board?.players || []
+
+    await updateBoard(id as string, {
+      isPlaying: false,
+      isReveal: false
+    })
+
+    for (const player of players) {
+      await updatePlayer(id as string, player.id, {
+        vote: ''
+      })
+    }
+  }
+
+  const revealCards = async () => {
+    if (countDown === 1 && id && isAdmin) {
+      await updateBoard(id as string, {
+        isReveal: true
+      })
+    }
+    setCountDown(prevState => prevState > 0 ? prevState - 1 : 0)
+  }
+
+  useInterval(revealCards, !board?.isPlaying ? 1000 : null)
 
   useEffect(() => {
     if (!id) return
@@ -77,6 +119,8 @@ export function BoardProvider ({ children }: any) {
         player,
         participants,
         createBoard: handleCreateBoard,
+        onReveal: handleRevealCards,
+        onRestart: handleRestart,
         onChangeActiveIssue: handleChangeActiveIssue
       }}
     >

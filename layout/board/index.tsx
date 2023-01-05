@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 
-import { Box, Typography } from 'components/common'
+import { Box, Button, Typography } from 'components/common'
 import { useBoard } from 'context/board'
 import { Issue } from './components'
 import * as Styles from './styles'
@@ -17,7 +17,8 @@ export function BoardLayout () {
 
   const {
     board,
-    player
+    player,
+    onReveal
   } = useBoard()
 
   const renderCurrentIssue = () => {
@@ -38,6 +39,15 @@ export function BoardLayout () {
     />
   ))
 
+  const renderReveal = () => {
+    if (board?.isPlaying && board?.isReveal) return null
+
+    return (
+      <Button onClick={onReveal}>
+        show cards
+      </Button>
+    )
+  }
   return (
     <>
       <PlayerRegister open={auth.isSigned && player && !player?.name} />
@@ -55,6 +65,9 @@ export function BoardLayout () {
           {renderCurrentIssue()}
           <Box fullWidth justifyContent="center">
             {renderParticipants}
+          </Box>
+          <Box justifyContent="center">
+            {renderReveal()}
           </Box>
           <Styles.Hand>
             <CardList />

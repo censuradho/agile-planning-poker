@@ -39,9 +39,15 @@ export function BoardProvider ({ children }: any) {
 
   const player = board?.players?.find(player => player?.id === auth?.user?.uid)
 
+  const players = board?.players || []
+
   const isAdmin = player?.role === Roles.admin
 
   const issues = board?.issues || []
+
+  const canReveal = players.length > 1 && players
+    .filter(player => !player.vote)
+    .length === 0
 
   const handleCreateBoard = async (payload: CreateBoardRequest) => {
     const board = await createBoard({
@@ -70,8 +76,7 @@ export function BoardProvider ({ children }: any) {
     if (!id) return
 
     await updateBoard(id as string, {
-      isPlaying: false,
-      isReveal: true
+      isPlaying: false
     })
   }
 
@@ -90,6 +95,8 @@ export function BoardProvider ({ children }: any) {
         vote: ''
       })
     }
+
+    setCountDown(baseCountDown)
   }
 
   const revealCards = async () => {
@@ -120,6 +127,7 @@ export function BoardProvider ({ children }: any) {
         player,
         participants,
         countDown,
+        canReveal,
         createBoard: handleCreateBoard,
         onReveal: handleRevealCards,
         onRestart: handleRestart,

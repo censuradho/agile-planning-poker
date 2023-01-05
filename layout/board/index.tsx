@@ -20,7 +20,8 @@ export function BoardLayout () {
     player,
     onReveal,
     countDown,
-    onRestart
+    onRestart,
+    canReveal
   } = useBoard()
 
   const renderCurrentIssue = () => {
@@ -62,9 +63,17 @@ export function BoardLayout () {
     )
   }
 
+  const renderCountDown = () => {
+    if (board?.isPlaying || countDown === 0) return null
+
+    return (
+      <Styles.Count>{countDown}</Styles.Count>
+    )
+  }
+
   return (
     <>
-      <PlayerRegister open={auth.isSigned && player && !player?.name} />
+      <PlayerRegister open={!auth.isSigned || (player && !player?.name)} />
       <Styles.Container>
         <Styles.Header>
           <Box gap={1} alignItems="center">
@@ -77,12 +86,23 @@ export function BoardLayout () {
         </Styles.Header>
         <Styles.Main>
           {renderCurrentIssue()}
-          <Box fullWidth justifyContent="center">
-            {renderParticipants}
-          </Box>
-          <Box justifyContent="center">
-            {renderReveal()}
-            {renderRestart()}
+          <Box
+            marginTop={3}
+            alignItems="center"
+            justifyContent="center"
+            gap={2}
+            flexDirection="column"
+          >
+            <Box fullWidth justifyContent="center" gap={1}>
+              {renderParticipants}
+            </Box>
+            <Box justifyContent="center">
+              {renderReveal()}
+              {renderRestart()}
+            </Box>
+            <Box>
+              {renderCountDown()}
+            </Box>
           </Box>
           <Styles.Hand>
             <Box justifyContent="center">

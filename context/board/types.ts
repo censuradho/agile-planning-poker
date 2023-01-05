@@ -11,6 +11,7 @@ export interface BoardContextParams {
   player?: Player
   participants?: Player[]
   countDown: number
+  canReveal?: boolean
   onChangeActiveIssue?: (issueId: string) => Promise<void>
   createBoard: (payload: CreateBoardRequest) => Promise<Board>
   onReveal: () => Promise<void>

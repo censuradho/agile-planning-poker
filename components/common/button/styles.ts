@@ -35,7 +35,7 @@ export const Button = styled('button', {
       stroke: {
         background: 'none',
         border: '1px solid $foregroundActive',
-        padding: '0.3rem 1rem',
+        padding: '1rem',
 
         '&:hover': {
           background: '$foregroundActive'

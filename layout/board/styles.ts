@@ -39,3 +39,8 @@ export const Hand = styled('div', {
     justifyContent: 'center'
   }
 })
+
+export const Count = styled('strong', {
+  fontSize: '$md',
+  color: '$heading'
+})

@@ -66,12 +66,12 @@ function BaseCardList () {
     })
   }
 
-  const renderCards = fibonacci?.map((value, index) => (
-    <Styles.Card isSelected={false} key={index}>
+  const renderCards = fibonacci?.map((card, index) => (
+    <Styles.Card isSelected={card.value === player?.vote} key={index}>
       <Styles.Button
-        disabled={false}
-        onClick={() => handleVote(value)}
-      >{value.label}</Styles.Button>
+        disabled={player?.isSpectator}
+        onClick={() => handleVote(card)}
+      >{card.label}</Styles.Button>
     </Styles.Card>
   ))
 

@@ -17,8 +17,7 @@ export function BoardLayout () {
 
   const {
     board,
-    player,
-    participants
+    player
   } = useBoard()
 
   const renderCurrentIssue = () => {
@@ -31,7 +30,7 @@ export function BoardLayout () {
     )
   }
 
-  const renderParticipants = participants?.map(participant => (
+  const renderParticipants = board?.players?.map(participant => (
     <CardReval
       key={participant.id}
       isSpectator={participant?.isSpectator}

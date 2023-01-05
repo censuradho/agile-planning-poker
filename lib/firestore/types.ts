@@ -35,7 +35,7 @@ export interface CreateBoardRequest extends
 
 export type CreateIssueRequest = Pick<IIssue, 'value'>
 
-export type CreatePlayerRequest = Pick<Player, 'name' | 'isAnonymous' | 'id'>
+export type CreatePlayerRequest = Pick<Player, 'name' | 'isAnonymous' | 'id' | 'role'>
 
 export type UpdateBoardRequest = Partial<Board>
 export type UpdatePlayerRequest = Partial<Player>

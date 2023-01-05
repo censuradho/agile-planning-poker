@@ -7,7 +7,7 @@ export const List = styled('ul', {
   paddingRight: '1.5rem',
   overflow: 'auto',
   userSelect: 'none',
-  '@md': {
+  '@laptops-min': {
     justifyContent: 'center'
   }
 })

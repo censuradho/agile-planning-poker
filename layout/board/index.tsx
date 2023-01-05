@@ -48,6 +48,7 @@ export function BoardLayout () {
       </Button>
     )
   }
+
   return (
     <>
       <PlayerRegister open={auth.isSigned && player && !player?.name} />
@@ -70,6 +71,9 @@ export function BoardLayout () {
             {renderReveal()}
           </Box>
           <Styles.Hand>
+            <Box justifyContent="center">
+              <Typography>Choose your card 👇</Typography>
+            </Box>
             <CardList />
           </Styles.Hand>
         </Styles.Main>

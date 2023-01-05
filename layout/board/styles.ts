@@ -32,9 +32,10 @@ export const IssueLabel = styled('span', {
 
 export const Hand = styled('div', {
   marginTop: 'auto',
-
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
   '@laptops-min': {
-    display: 'flex',
     justifyContent: 'center'
   }
 })

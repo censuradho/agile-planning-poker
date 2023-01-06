@@ -29,7 +29,7 @@ export function BoardProvider ({ children }: any) {
   const { id } = router.query
 
   const [board, setBoard] = useState<Board | null>(null)
-  const [countDown, setCountDown] = useState<number>(baseCountDown)
+  const [countDown, setCountDown] = useState<number>(3)
 
   const participants = useMemo(() =>
     board
@@ -53,6 +53,7 @@ export function BoardProvider ({ children }: any) {
     const board = await createBoard({
       ...payload
     })
+
     setBoard(board)
 
     return board
@@ -74,6 +75,7 @@ export function BoardProvider ({ children }: any) {
 
   const handleRevealCards = async () => {
     if (!id) return
+    setCountDown(baseCountDown)
 
     await updateBoard(id as string, {
       isPlaying: false
@@ -105,10 +107,11 @@ export function BoardProvider ({ children }: any) {
         isReveal: true
       })
     }
+
     setCountDown(prevState => prevState > 0 ? prevState - 1 : 0)
   }
 
-  useInterval(revealCards, !board?.isPlaying ? 1000 : null)
+  useInterval(revealCards, board && !board?.isPlaying ? 1000 : null)
 
   useEffect(() => {
     if (!id) return

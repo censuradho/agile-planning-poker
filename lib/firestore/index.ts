@@ -30,7 +30,9 @@ export async function createBoard (payload: CreateBoardRequest) {
 
   await setDoc(doc(firestore, COLLECTION_BOARD, id), {
     id,
-    ...payload
+    ...payload,
+    isPlaying: true,
+    isReveal: false
   })
 
   return await getBoard(id)

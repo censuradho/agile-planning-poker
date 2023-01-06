@@ -29,7 +29,7 @@ export interface Board {
 }
 
 export interface CreateBoardRequest extends
-  Pick<Board, 'name'> {
+  Pick<Board, 'name' > {
     players?: Player[]
 }
 

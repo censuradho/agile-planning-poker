@@ -18,6 +18,7 @@ export const colors = {
   background: '#111',
   foreground: '#000',
   foregroundActive: '#333',
+  disabled: '#444',
   white: '#fff',
   text: '#99A29E',
   heading: '#ffff',

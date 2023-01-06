@@ -47,7 +47,7 @@ export function BoardLayout () {
     if (board?.isReveal) return null
 
     return (
-      <Button onClick={onReveal}>
+      <Button onClick={onReveal} disabled={!canReveal}>
         show cards
       </Button>
     )
@@ -60,6 +60,7 @@ export function BoardLayout () {
       <Button
         variant="stroke"
         onClick={onRestart}
+        disabled={!canReveal}
       >Start new game</Button>
     )
   }

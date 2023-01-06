@@ -10,6 +10,9 @@ export const Button = styled('button', {
   whiteSpace: 'nowrap',
   borderRadius: '3px',
 
+  '&:disabled': {
+    cursor: 'not-allowed'
+  },
   variants: {
     fullWidth: {
       true: {
@@ -25,7 +28,7 @@ export const Button = styled('button', {
           background: '$primaryActive'
         },
         '&:disabled': {
-          background: '$foregroundActive'
+          background: '$disabled'
         },
         '> *': {
           color: '$heading'

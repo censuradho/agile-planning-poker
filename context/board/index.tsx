@@ -48,7 +48,7 @@ export function BoardProvider ({ children }: any) {
 
   const issues = board?.issues || []
 
-  const canReveal = players.length > 1 && players
+  const canReveal = players.length > 0 && players
     .filter(player => !player.vote)
     .length === 0
 

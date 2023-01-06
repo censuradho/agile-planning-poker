@@ -4,7 +4,8 @@ export const Main = styled('main', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '100vh'
+  height: '100vh',
+  padding: '1rem'
 })
 
 export const Content = styled('section', {
@@ -16,7 +17,6 @@ export const Content = styled('section', {
 })
 
 export const Form = styled('form', {
-
   strong: {
     fontSize: '$sm',
     color: '$heading',

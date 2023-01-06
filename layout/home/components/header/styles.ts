@@ -73,6 +73,9 @@ export const Item = styled('li', {
 })
 
 export const Navigation = styled('nav', {
+  display: 'flex',
+  alignItems: 'center',
+
   ul: {
     display: 'flex',
     gap: '1rem',

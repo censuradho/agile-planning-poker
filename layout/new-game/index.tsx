@@ -33,6 +33,8 @@ export function NewGameLayout () {
 
   const onSubmit = async (payload: NewGameFormData) => {
     try {
+      setIsLoading(true)
+
       const board = await createBoard({
         ...payload
       })
@@ -50,7 +52,6 @@ export function NewGameLayout () {
         })
       }
 
-      setIsLoading(true)
       router.push(resolvePath(paths.board, { id: board.id }))
     } finally {
       setIsLoading(false)
@@ -87,7 +88,7 @@ export function NewGameLayout () {
             />
           </Box>
           <Box marginTop={2}>
-            <Button loading={isLoading} fullWidth>Create game</Button>
+            <Button disabled={isLoading} fullWidth>Create game</Button>
           </Box>
         </Styles.Form>
       </Styles.Content>

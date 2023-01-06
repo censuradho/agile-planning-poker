@@ -23,7 +23,7 @@ export function Issue () {
   const points = issues
     .filter(issue => !!Number(issue.vote))
     .map(issue => Number(issue.vote))
-    .reduce((prev, next) => prev + next)
+    .reduce((prev, next) => prev + next, 0)
 
   const renderIssues = issues.map(issue =>
     <li key={issue.id}>

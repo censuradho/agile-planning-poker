@@ -20,6 +20,11 @@ export function Issue () {
     onChangeIssueVote
   } = useBoard()
 
+  const points = issues
+    .filter(issue => !!Number(issue.vote))
+    .map(issue => Number(issue.vote))
+    .reduce((prev, next) => prev + next)
+
   const renderIssues = issues.map(issue =>
     <li key={issue.id}>
       <IssueItem
@@ -38,7 +43,7 @@ export function Issue () {
     return (
       <Box gap={1} marginTop={1}>
         <Typography>{`${issues.length} issues`}</Typography>
-        <Typography>{`${0} points`}</Typography>
+        <Typography>{`${points} points`}</Typography>
       </Box>
     )
   }

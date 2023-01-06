@@ -119,6 +119,7 @@ export function BoardProvider ({ children }: any) {
     return () => unsubscribe()
   }, [id])
 
+  console.log(countDown)
   return (
     <BoardContext.Provider
       value={{

@@ -14,6 +14,7 @@ import { resolvePath } from 'utils/helpers'
 import { useState } from 'react'
 import { useAuth } from 'context/auth'
 import { createPlayer } from 'lib/firestore'
+import { Roles } from 'lib/firestore/types'
 
 export function NewGameLayout () {
   const auth = useAuth()
@@ -38,7 +39,8 @@ export function NewGameLayout () {
         await createPlayer(board.id, {
           id: auth.user.uid,
           name: auth.user.displayName || '',
-          isAnonymous: auth.user?.isAnonymous
+          isAnonymous: auth.user?.isAnonymous,
+          role: Roles.admin
         })
       }
 

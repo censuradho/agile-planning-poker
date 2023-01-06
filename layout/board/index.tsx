@@ -71,7 +71,6 @@ export function BoardLayout () {
     )
   }
 
-  console.log(auth)
   return (
     <>
       <PlayerRegister open={!auth.isSigned || (player && !player?.name)} />

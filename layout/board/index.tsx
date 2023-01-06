@@ -7,8 +7,10 @@ import * as Styles from './styles'
 import { useAuth } from 'context/auth'
 import { CardList } from './components/card-list'
 import { CardReval } from './components/car-reveal'
+import Link from 'next/link'
+import { paths } from 'constants/routes'
 
-const PlayerRegister = dynamic(() => import('context/board/components').then(mod => mod.PlayerRegister), {
+const PlayerRegister = dynamic(() => import('./components').then(mod => mod.PlayerRegister), {
   ssr: false
 })
 
@@ -106,7 +108,9 @@ export function BoardLayout () {
       <Styles.Container>
         <Styles.Header>
           <Box gap={1} alignItems="center">
-            <Typography>Logo</Typography>
+            <Link href={paths.home}>
+              <Typography>Logo</Typography>
+            </Link>
             {board?.name && <Typography>{' '}{board?.name}</Typography>}
           </Box>
           <Box justifyContent="flex-end" flex={1}>

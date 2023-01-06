@@ -1,2 +1,5 @@
 export * from './issue'
 export * from './avatar'
+export * from './player-register'
+export * from './car-reveal'
+export * from './card-list'

@@ -14,7 +14,7 @@ const contentShow = keyframes({
 export const Overlay = styled(AlertDialog.Overlay, {
   position: 'fixed',
   inset: 0,
-  animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
+  animation: `${overlayShow} backward 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
   backdropFilter: 'blur(5px)'
 })
 
@@ -39,7 +39,7 @@ export const Content = styled(AlertDialog.Content, {
   maxHeight: '85vh',
   width: '90vw',
   borderRadios: 0,
-  animation: `${contentShow} 0.3s cubic-bezier(0.16, 1, 0.3, 1)`,
+  animation: `${contentShow}  0.3s cubic-bezier(0.16, 1, 0.3, 1)`,
   padding: '1rem',
   display: 'flex',
   flexDirection: 'column',

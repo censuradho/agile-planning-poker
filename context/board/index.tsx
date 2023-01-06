@@ -28,6 +28,8 @@ export function BoardProvider ({ children }: any) {
   const router = useRouter()
   const auth = useAuth()
 
+  const [isLoaded, setIsLoaded] = useState(false)
+
   const { id } = router.query
 
   const [board, setBoard] = useState<Board | null>(null)
@@ -154,9 +156,12 @@ export function BoardProvider ({ children }: any) {
 
     const unsubscribe = onSnapshot(doc(firestore, COLLECTION_BOARD, id as string), (doc) => {
       setBoard(doc.data() as Board)
+      setIsLoaded(true)
     })
     return () => unsubscribe()
   }, [id])
+
+  if (!isLoaded) return null
 
   return (
     <BoardContext.Provider

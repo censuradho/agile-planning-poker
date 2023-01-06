@@ -44,3 +44,15 @@ export const Count = styled('strong', {
   fontSize: '$md',
   color: '$heading'
 })
+
+export const PlayerName = styled('strong', {
+  textAlign: 'center',
+
+  variants: {
+    me: {
+      true: {
+        color: '$heading'
+      }
+    }
+  }
+})

@@ -35,14 +35,26 @@ export function BoardLayout () {
     )
   }
 
-  const renderParticipants = board?.players?.map(participant => (
-    <CardReval
-      key={participant.id}
-      playerId={participant.id}
-      isSpectator={participant?.isSpectator}
-      label={participant.vote || ''}
-    />
-  ))
+  const renderParticipants = board?.players?.map(participant => {
+    const isMe = player?.id === participant.id
+
+    const name = isMe ? 'you' : participant.name
+
+    return (
+      <Box
+        key={participant.id}
+        flexDirection="column"
+        gap={1}
+      >
+        <CardReval
+          playerId={participant.id}
+          isSpectator={participant?.isSpectator}
+          label={participant.vote || ''}
+        />
+        <Styles.PlayerName me={isMe}>{name}</Styles.PlayerName>
+      </Box>
+    )
+  })
 
   const renderReveal = () => {
     if (board?.isReveal) return null

@@ -94,7 +94,8 @@ export function BoardProvider ({ children }: any) {
 
     await updateBoard(id as string, {
       isPlaying: true,
-      isReveal: false
+      isReveal: false,
+      activeIssue: null
     })
 
     for (const player of players) {

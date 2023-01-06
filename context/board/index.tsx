@@ -32,7 +32,6 @@ export function BoardProvider ({ children }: any) {
 
   const [board, setBoard] = useState<Board | null>(null)
   const [countDown, setCountDown] = useState<number>(3)
-  const [currentUser, setCurrentUser] = useState(auth.user)
 
   const participants = useMemo(() =>
     board
@@ -47,6 +46,8 @@ export function BoardProvider ({ children }: any) {
   const isAdmin = player?.role === Roles.admin
 
   const issues = board?.issues || []
+
+  const activeIssue = board?.issues?.find(issue => issue.id === board?.activeIssue)
 
   const canReveal = players.length > 0 && players
     .filter(player => !player.vote)
@@ -68,11 +69,9 @@ export function BoardProvider ({ children }: any) {
   const handleChangeActiveIssue = async (issueId: string) => {
     if (!board || !board.issues) return
 
-    const issue = board.issues.find(value => value.id === issueId)
+    const isActiveIssue = board.activeIssue === issueId
 
-    const isActiveIssue = board.activeIssue?.id === issueId
-
-    const activeIssue = isActiveIssue ? null : issue
+    const activeIssue = isActiveIssue ? null : issueId
 
     return await updateBoard(board.id, {
       activeIssue
@@ -162,6 +161,7 @@ export function BoardProvider ({ children }: any) {
         participants,
         countDown,
         canReveal,
+        activeIssue,
         createBoard: handleCreateBoard,
         onReveal: handleRevealCards,
         onRestart: handleRestart,

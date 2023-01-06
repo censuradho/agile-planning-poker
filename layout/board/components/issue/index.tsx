@@ -14,7 +14,7 @@ import { useBoard } from 'context/board'
 
 export function Issue () {
   const {
-    board,
+    activeIssue,
     issues,
     onChangeActiveIssue,
     onChangeIssueVote
@@ -23,7 +23,7 @@ export function Issue () {
   const renderIssues = issues.map(issue =>
     <li key={issue.id}>
       <IssueItem
-        active={board?.activeIssue?.id === issue.id}
+        active={activeIssue?.id === issue.id}
         label={issue.value}
         onActiveChange={() => onChangeActiveIssue?.(issue.id)}
         value={issue?.vote || ''}

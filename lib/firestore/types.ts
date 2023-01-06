@@ -23,7 +23,7 @@ export interface Board {
   id: string
   name: string,
   issues?: IIssue[]
-  activeIssue?: IIssue | null
+  activeIssue?: string | null
   players: Player[]
   isPlaying?: boolean
   isReveal?: boolean

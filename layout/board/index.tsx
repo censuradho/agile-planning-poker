@@ -21,7 +21,8 @@ export function BoardLayout () {
     onReveal,
     countDown,
     onRestart,
-    canReveal
+    canReveal,
+    activeIssue
   } = useBoard()
 
   const renderCurrentIssue = () => {
@@ -29,7 +30,7 @@ export function BoardLayout () {
 
     return (
       <Box>
-        <Styles.IssueLabel>{`Votting ${board?.activeIssue?.value}`}</Styles.IssueLabel>
+        <Styles.IssueLabel>{`Votting ${activeIssue?.value}`}</Styles.IssueLabel>
       </Box>
     )
   }

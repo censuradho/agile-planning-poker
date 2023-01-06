@@ -9,6 +9,7 @@ export interface BoardContextParams {
   board?: Board | null
   issues: IIssue[]
   player?: Player
+  activeIssue?: IIssue
   participants?: Player[]
   countDown: number
   canReveal?: boolean

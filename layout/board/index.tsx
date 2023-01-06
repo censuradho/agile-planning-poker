@@ -37,6 +37,7 @@ export function BoardLayout () {
   const renderParticipants = board?.players?.map(participant => (
     <CardReval
       key={participant.id}
+      playerId={participant.id}
       isSpectator={participant?.isSpectator}
       label={participant.vote || ''}
     />

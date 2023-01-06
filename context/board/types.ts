@@ -12,8 +12,9 @@ export interface BoardContextParams {
   participants?: Player[]
   countDown: number
   canReveal?: boolean
-  onChangeActiveIssue?: (issueId: string) => Promise<void>
   createBoard: (payload: CreateBoardRequest) => Promise<Board>
+  onRemovePlayer?: (userId: string) => Promise<void>
+  onChangeActiveIssue?: (issueId: string) => Promise<void>
   onReveal: () => Promise<void>
   onRestart: () => Promise<void>
 }

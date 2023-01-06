@@ -32,6 +32,7 @@ export function BoardProvider ({ children }: any) {
 
   const [board, setBoard] = useState<Board | null>(null)
   const [countDown, setCountDown] = useState<number>(3)
+  const [currentUser, setCurrentUser] = useState(auth.user)
 
   const participants = useMemo(() =>
     board
@@ -118,6 +119,14 @@ export function BoardProvider ({ children }: any) {
 
   useInterval(revealCards, board && !board?.isPlaying ? 1000 : null)
 
+  const handleRemovePlayer = async (userId: string) => {
+    const playersFiltered = players.filter(player => player.id !== userId)
+
+    await updateBoard(id as string, {
+      players: playersFiltered
+    })
+  }
+
   useEffect(() => {
     if (!id) return
 
@@ -139,7 +148,8 @@ export function BoardProvider ({ children }: any) {
         createBoard: handleCreateBoard,
         onReveal: handleRevealCards,
         onRestart: handleRestart,
-        onChangeActiveIssue: handleChangeActiveIssue
+        onChangeActiveIssue: handleChangeActiveIssue,
+        onRemovePlayer: handleRemovePlayer
       }}
     >
       {children}

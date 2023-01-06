@@ -16,12 +16,13 @@ export const ButtonIconContainer = styled('div', {
   position: 'absolute',
   top: -20,
   right: -20,
-  zIndex: 10,
-  backgroundColor: '$background',
+  zIndex: 3,
+  backgroundColor: '$foregroundActive',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  visibility: 'hidden'
+  visibility: 'hidden',
+  borderRadius: '50%'
 })
 
 export const Base = styled('div', {
@@ -30,7 +31,8 @@ export const Base = styled('div', {
   height: '100%',
   backfaceVisibility: 'hidden',
   border: '2px solid $primary',
-  borderRadius: '$sm'
+  borderRadius: '$sm',
+  zIndex: 2
 })
 export const Front = styled(Base, {
   background: '$primary',
@@ -58,7 +60,6 @@ export const Back = styled(Base, {
 export const Card = styled('div', {
   background: 'transparent',
   perspective: '1000px',
-
   width: '5rem',
   height: '7rem',
 

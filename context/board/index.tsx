@@ -134,8 +134,6 @@ export function BoardProvider ({ children }: any) {
     setCountDown(prevState => prevState > 0 ? prevState - 1 : 0)
   }
 
-  useInterval(revealCards, board && !board?.isPlaying ? 1000 : null)
-
   const handleRemovePlayer = async (userId: string) => {
     const playersFiltered = players.filter(player => player.id !== userId)
 
@@ -143,6 +141,13 @@ export function BoardProvider ({ children }: any) {
       players: playersFiltered
     })
   }
+
+  useInterval(revealCards, board && !board?.isPlaying ? 1000 : null)
+
+  useEffect(() => {
+    if (!board?.isPlaying) return
+    setCountDown(baseCountDown)
+  }, [board?.isPlaying])
 
   useEffect(() => {
     if (!id) return

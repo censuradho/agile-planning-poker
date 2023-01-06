@@ -14,9 +14,9 @@ export function Select (props: SelectProps) {
   ))
 
   return (
-    <Styles.Root>
+    <Styles.Root {...props}>
       <Styles.Trigger>
-        <Styles.Value />
+        <Styles.Value aria-label={props?.value}>{props?.value}</Styles.Value>
       </Styles.Trigger>
       <Styles.Portal>
         <Styles.Content>

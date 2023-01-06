@@ -8,6 +8,7 @@ export interface IIssue {
   id: string
   description?: string
   link?: string
+  vote?: string
 }
 
 export interface Player {

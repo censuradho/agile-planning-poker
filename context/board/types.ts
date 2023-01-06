@@ -17,4 +17,5 @@ export interface BoardContextParams {
   onChangeActiveIssue?: (issueId: string) => Promise<void>
   onReveal: () => Promise<void>
   onRestart: () => Promise<void>
+  onChangeIssueVote: (issueId: string, vote: string) => Promise<void>
 }

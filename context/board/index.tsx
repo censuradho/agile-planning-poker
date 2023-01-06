@@ -107,6 +107,23 @@ export function BoardProvider ({ children }: any) {
     setCountDown(baseCountDown)
   }
 
+  const handleChangeIssueVote = async (issueId: string, vote: string) => {
+    if (!board || !board.issues) return
+
+    const issues = board.issues.map(issue =>
+      issue.id === issueId
+        ? ({
+          ...issue,
+          vote
+        })
+        : issue
+    )
+
+    return await updateBoard(board.id, {
+      issues
+    })
+  }
+
   const revealCards = async () => {
     if (countDown === 1 && id && isAdmin) {
       await updateBoard(id as string, {
@@ -149,7 +166,8 @@ export function BoardProvider ({ children }: any) {
         onReveal: handleRevealCards,
         onRestart: handleRestart,
         onChangeActiveIssue: handleChangeActiveIssue,
-        onRemovePlayer: handleRemovePlayer
+        onRemovePlayer: handleRemovePlayer,
+        onChangeIssueVote: handleChangeIssueVote
       }}
     >
       {children}

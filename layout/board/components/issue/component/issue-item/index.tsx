@@ -8,7 +8,9 @@ export function IssueItem (props: IssueItemProps) {
     label,
     active,
     index,
-    onActiveChange
+    onActiveChange,
+    onValueChange,
+    value
   } = props
 
   return (
@@ -29,7 +31,10 @@ export function IssueItem (props: IssueItemProps) {
           >{
               active ? 'Voting now...' : 'Vote this issue'
             }</Styles.Button>
-          <Select />
+          <Select
+            value={value}
+            onValueChange={onValueChange}
+          />
         </Box>
       </Box>
     </Styles.Container>

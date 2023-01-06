@@ -12,8 +12,11 @@ import { paths } from 'constants/theme/routes'
 import { useBoard } from 'context/board'
 import { resolvePath } from 'utils/helpers'
 import { useState } from 'react'
+import { useAuth } from 'context/auth'
+import { createPlayer } from 'lib/firestore'
 
 export function NewGameLayout () {
+  const auth = useAuth()
   const { createBoard } = useBoard()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -27,7 +30,18 @@ export function NewGameLayout () {
 
   const onSubmit = async (payload: NewGameFormData) => {
     try {
-      const board = await createBoard(payload)
+      const board = await createBoard({
+        ...payload
+      })
+
+      if (auth?.isSigned && auth.user) {
+        await createPlayer(board.id, {
+          id: auth.user.uid,
+          name: auth.user.displayName || '',
+          isAnonymous: auth.user?.isAnonymous
+        })
+      }
+
       setIsLoading(true)
       router.push(resolvePath(paths.board, { id: board.id }))
     } finally {

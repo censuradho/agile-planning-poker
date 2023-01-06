@@ -7,7 +7,7 @@ import * as Styles from './styles'
 import type { PlayerRegisterFormData, PlayerRegisterProps } from './types'
 import { playerRegisterValidations } from './validations'
 import { useState } from 'react'
-import { createPlayer } from 'lib/firestore'
+import { createPlayer, updatePlayer } from 'lib/firestore'
 import { useRouter } from 'next/router'
 import { useAuth } from 'context/auth'
 import { useBoard } from 'context/board'
@@ -35,7 +35,14 @@ export function PlayerRegister (props: PlayerRegisterProps) {
       setIsLoading(true)
       const players = board?.players || []
 
-      const isUniquePlayer = players.length === 0
+      if (auth?.isSigned && board && auth.user) {
+        await updatePlayer(board?.id, auth.user.uid, {
+          name: data.name
+        })
+        return
+      }
+
+      const isUniquePlayer = players.length === 1
 
       const anonymousUser = await auth.signInAnonymously()
 

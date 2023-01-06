@@ -1,4 +1,5 @@
 import { Box, ButtonIcon, Typography } from 'components/common'
+import { Select } from './components'
 import * as Styles from './styles'
 import { IssueItemProps } from './types'
 
@@ -21,13 +22,14 @@ export function IssueItem (props: IssueItemProps) {
           />
         </Box>
         <Styles.Label>{label}</Styles.Label>
-        <Box>
+        <Box justifyContent="space-between">
           <Styles.Button
             onClick={onActiveChange}
             variant={active ? 'primary' : 'letter'}
           >{
               active ? 'Voting now...' : 'Vote this issue'
             }</Styles.Button>
+          <Select />
         </Box>
       </Box>
     </Styles.Container>

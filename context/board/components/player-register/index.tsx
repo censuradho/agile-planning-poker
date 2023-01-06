@@ -12,6 +12,8 @@ import { useRouter } from 'next/router'
 import { useAuth } from 'context/auth'
 import { useBoard } from 'context/board'
 import { Roles } from 'lib/firestore/types'
+import { logEvent } from 'lib/analytics'
+import { ANALYTICS_EVENTS } from 'constants/analytics'
 
 export function PlayerRegister (props: PlayerRegisterProps) {
   const [isLoading, setIsLoading] = useState(false)
@@ -51,6 +53,10 @@ export function PlayerRegister (props: PlayerRegisterProps) {
         name: data.name,
         isAnonymous: true,
         role: isUniquePlayer ? Roles.admin : Roles.player
+      })
+
+      logEvent(ANALYTICS_EVENTS.PLAYER_JOIN, {
+        id: anonymousUser.user.uid
       })
     } finally {
       setIsLoading(false)

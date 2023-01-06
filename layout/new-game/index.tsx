@@ -15,6 +15,8 @@ import { useState } from 'react'
 import { useAuth } from 'context/auth'
 import { createPlayer } from 'lib/firestore'
 import { Roles } from 'lib/firestore/types'
+import { logEvent } from 'lib/analytics'
+import { ANALYTICS_EVENTS } from 'constants/analytics'
 
 export function NewGameLayout () {
   const auth = useAuth()
@@ -41,6 +43,10 @@ export function NewGameLayout () {
           name: auth.user.displayName || '',
           isAnonymous: auth.user?.isAnonymous,
           role: Roles.admin
+        })
+
+        logEvent(ANALYTICS_EVENTS.PLAYER_JOIN, {
+          id: auth.user.uid
         })
       }
 

@@ -85,14 +85,14 @@ export async function updateIssue (boardId: string, issueId: string, payload: Pa
 export async function createPlayer (boardId: string, payload: CreatePlayerRequest) {
   const boardData = await getBoard(boardId)
 
-  const players = await updateDoc(doc(firestore, COLLECTION_BOARD, boardId), {
+  await updateDoc(doc(firestore, COLLECTION_BOARD, boardId), {
     players: [
       ...(boardData?.players || []),
       payload
     ]
   })
 
-  return players
+  return payload
 }
 
 export async function updatePlayer (boardId: string, playerId: string, payload: UpdatePlayerRequest) {

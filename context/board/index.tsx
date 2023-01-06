@@ -18,6 +18,8 @@ import { COLLECTION_BOARD, createBoard, firestore, updateBoard, updatePlayer } f
 import { useRouter } from 'next/router'
 import { useAuth } from 'context/auth'
 import { useInterval } from 'hooks'
+import { logEvent } from 'lib/analytics'
+import { ANALYTICS_EVENTS } from 'constants/analytics'
 
 const BoardContext = createContext({} as BoardContextParams)
 const baseCountDown = 3
@@ -53,8 +55,11 @@ export function BoardProvider ({ children }: any) {
     const board = await createBoard({
       ...payload
     })
-
     setBoard(board)
+
+    logEvent(ANALYTICS_EVENTS.CREATE_BOARD, {
+      id: board.id
+    })
 
     return board
   }
@@ -122,7 +127,6 @@ export function BoardProvider ({ children }: any) {
     return () => unsubscribe()
   }, [id])
 
-  console.log(countDown)
   return (
     <BoardContext.Provider
       value={{

@@ -1,7 +1,5 @@
 import { styled } from 'stitches.config'
 
-import svgBg from 'public/bg-card.svg'
-
 export const InnerCard = styled('div', {
   position: 'relative',
   width: '100%',
@@ -36,7 +34,6 @@ export const Base = styled('div', {
 })
 export const Front = styled(Base, {
   background: '$primary',
-  backgroundImage: `url(${svgBg})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
 

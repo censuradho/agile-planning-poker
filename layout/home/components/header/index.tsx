@@ -2,8 +2,11 @@ import { Box, Button, Icon } from 'components/common'
 import * as Styles from './styles'
 import dynamic from 'next/dynamic'
 
+import Logo from 'public/logo-full.svg'
+
 import router from 'next/router'
 import { paths } from 'constants/theme/routes'
+import Image from 'next/image'
 
 const HiddenView = dynamic(() => import('components/common/hidden-view').then(mod => mod.HiddenView), {
   ssr: false
@@ -13,7 +16,7 @@ export function Header () {
   return (
     <Styles.Root>
       <Styles.Header>
-        <strong>Logo</strong>
+        <Image height={40} src={Logo} alt="logo" />
         <Styles.NavContainer>
           <Styles.Navigation>
             <ul>

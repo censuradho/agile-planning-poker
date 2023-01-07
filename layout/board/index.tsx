@@ -9,6 +9,9 @@ import { CardList } from './components/card-list'
 import { CardReval } from './components/car-reveal'
 import Link from 'next/link'
 import { paths } from 'constants/routes'
+import Image from 'next/image'
+
+import Logo from 'public/logo-full.svg'
 
 const PlayerRegister = dynamic(() => import('./components').then(mod => mod.PlayerRegister), {
   ssr: false
@@ -109,9 +112,9 @@ export function BoardLayout () {
         <Styles.Header>
           <Box gap={1} alignItems="center">
             <Link href={paths.home}>
-              <Typography>Logo</Typography>
+              <Image height={35} src={Logo} alt="logo" />
             </Link>
-            {board?.name && <Typography>{' '}{board?.name}</Typography>}
+            {board?.name && <Typography color="heading" fontWeight="600">{' '}{board?.name}</Typography>}
           </Box>
           <Box justifyContent="flex-end" flex={1}>
             <Issue />

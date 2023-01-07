@@ -107,7 +107,7 @@ export function BoardLayout () {
 
   return (
     <>
-      <PlayerRegister open={!auth.isSigned || (player && !player?.name)} />
+      <PlayerRegister open={(player && !player?.name) || !auth.isSigned} />
       <Styles.Container>
         <Styles.Header>
           <Box gap={1} alignItems="center">

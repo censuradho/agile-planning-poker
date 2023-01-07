@@ -5,7 +5,7 @@ export function Head (props: HeadProps) {
   const {
     description,
     title,
-    image,
+    image = '/social-share-banner.jpg',
     og,
     twitter
   } = props

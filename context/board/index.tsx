@@ -144,6 +144,16 @@ export function BoardProvider ({ children }: any) {
     })
   }
 
+  const handleRemoveIssue = async (issueId: string) => {
+    if (!board || !board.issues) return
+
+    const issues = board.issues.filter(issue => issue.id !== issueId)
+
+    await updateBoard(board.id, {
+      issues
+    })
+  }
+
   useInterval(revealCards, board && !board?.isPlaying ? 1000 : null)
 
   useEffect(() => {
@@ -161,8 +171,6 @@ export function BoardProvider ({ children }: any) {
     return () => unsubscribe()
   }, [id])
 
-  if (!isLoaded) return null
-
   return (
     <BoardContext.Provider
       value={{
@@ -178,7 +186,8 @@ export function BoardProvider ({ children }: any) {
         onRestart: handleRestart,
         onChangeActiveIssue: handleChangeActiveIssue,
         onRemovePlayer: handleRemovePlayer,
-        onChangeIssueVote: handleChangeIssueVote
+        onChangeIssueVote: handleChangeIssueVote,
+        onRemoveIssue: handleRemoveIssue
       }}
     >
       {children}

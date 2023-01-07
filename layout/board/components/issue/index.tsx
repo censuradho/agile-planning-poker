@@ -17,7 +17,8 @@ export function Issue () {
     activeIssue,
     issues,
     onChangeActiveIssue,
-    onChangeIssueVote
+    onChangeIssueVote,
+    onRemoveIssue
   } = useBoard()
 
   const points = issues
@@ -33,6 +34,7 @@ export function Issue () {
         onActiveChange={() => onChangeActiveIssue?.(issue.id)}
         value={issue?.vote || ''}
         onValueChange={(vote) => onChangeIssueVote(issue.id, vote)}
+        onDelete={() => onRemoveIssue(issue.id)}
       />
     </li>
   )

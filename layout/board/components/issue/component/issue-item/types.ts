@@ -4,5 +4,6 @@ export interface IssueItemProps extends
   label: string
   active?: boolean,
   onActiveChange?: () => void
+  onDelete?: () => void
   index?: string
 }

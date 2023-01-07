@@ -1,5 +1,5 @@
-import { Box, ButtonIcon, Typography } from 'components/common'
-import { Select } from './components'
+import { Box, ButtonIcon, Icon, Typography } from 'components/common'
+import { Menu, Select } from './components'
 import * as Styles from './styles'
 import { IssueItemProps } from './types'
 
@@ -10,6 +10,7 @@ export function IssueItem (props: IssueItemProps) {
     index,
     onActiveChange,
     onValueChange,
+    onDelete,
     value
   } = props
 
@@ -18,10 +19,9 @@ export function IssueItem (props: IssueItemProps) {
       <Box flexDirection="column" gap={1.2}>
         <Box justifyContent="space-between">
           <Typography>{index}</Typography>
-          <ButtonIcon
-            label="menu"
-            icon={{ name: 'threeDotsVertical' }}
-          />
+          <Menu onDelete={onDelete}>
+            <Icon name="threeDotsVertical" />
+          </Menu>
         </Box>
         <Styles.Label>{label}</Styles.Label>
         <Box justifyContent="space-between">

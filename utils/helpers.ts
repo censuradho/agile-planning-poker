@@ -13,3 +13,5 @@ export const resolvePath = (path: string, obj: Record<string, any>) => {
 
   return tempPath
 }
+
+export const isBrowser = () => typeof window !== 'undefined'

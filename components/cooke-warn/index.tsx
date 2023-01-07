@@ -1,8 +1,32 @@
 import { Box, Button, Typography } from 'components/common'
+import { useLocalStorage } from 'hooks'
 import Link from 'next/link'
+
+import { Compliance } from './types'
 import * as Styles from './styles'
 
+const baseCookies: Compliance[] = [
+  {
+    concentGiven: false,
+    lastUpdate: new Date().toISOString(),
+    type: 'Analytics'
+  }
+]
+
 export function CookieWarn () {
+  const [concents, setConcents] = useLocalStorage<Compliance[]>('cookies-warn', baseCookies)
+
+  const handleAccept = () => {
+    setConcents(prevState => prevState.map(item => ({
+      ...item,
+      concentGiven: true
+    })))
+  }
+
+  const isAcceptAllConcents = !concents.map(item => item.concentGiven).includes(false)
+
+  if (isAcceptAllConcents) return null
+
   return (
     <Styles.Container>
       <Styles.Content>
@@ -14,7 +38,7 @@ export function CookieWarn () {
             </Typography>
             <Typography>For more information, consult the <Link href="">privacy policies</Link></Typography>
           </Box>
-          <Button>I agree</Button>
+          <Button onClick={handleAccept}>I agree</Button>
         </Box>
       </Styles.Content>
     </Styles.Container>

@@ -9,7 +9,7 @@ export default function Home () {
       <Head
         title="Free planning poker for agile teams"
         description="Realtime rooms help you estimate your tasks in a collaborative scrum poker"
-        image={SocialShareBanner as any as string}
+        image={SocialShareBanner.src}
       />
       <HomeLayout />
     </>

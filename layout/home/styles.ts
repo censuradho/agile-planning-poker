@@ -1,6 +1,7 @@
 import { styled } from 'stitches.config'
 
 export const Container = styled('div', {
+  height: '100vh'
 
 })
 
@@ -9,10 +10,10 @@ export const Main = styled('main', {
 })
 
 export const Section = styled('section', {
-  height: '100vh',
   width: '100%',
-  display: 'flex'
-
+  display: 'flex',
+  minHeight: '43.75rem',
+  alignItems: 'center'
 })
 
 export const Box1 = styled('div', {

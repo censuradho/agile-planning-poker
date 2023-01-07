@@ -13,8 +13,8 @@ const indigoDark = {
   indigo12: 'hsl(226, 83.0%, 96.3%)'
 }
 export const colors = {
-  primary: indigoDark.indigo10,
-  primaryActive: indigoDark.indigo8,
+  primary: '#64FCD9',
+  primaryActive: '#64FCD950',
   background: '#111',
   foreground: '#000',
   foregroundActive: '#333',

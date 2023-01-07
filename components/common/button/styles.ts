@@ -31,7 +31,8 @@ export const Button = styled('button', {
           background: '$disabled'
         },
         '> *': {
-          color: '$heading'
+          color: '$background',
+          fontWeight: 600
 
         }
       },

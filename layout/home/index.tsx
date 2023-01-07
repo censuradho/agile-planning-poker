@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import cardsImg from 'public/cards.svg'
+import cardsImg from 'public/video-call.svg'
 
 import { Box, Button, Container } from 'components/common'
 
@@ -35,7 +35,7 @@ export function HomeLayout () {
                 <p>Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor.</p>
                 <Button as="a" href={paths.newGame}>Start new game</Button>
               </Box>
-              <Image width={300} src={cardsImg} alt="cards" />
+              <Image width={400} src={cardsImg} alt="cards" />
             </Styles.Box1>
           </Container>
         </Styles.Section>

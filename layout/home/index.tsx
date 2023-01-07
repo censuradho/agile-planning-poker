@@ -32,10 +32,10 @@ export function HomeLayout () {
                 gap={2}
               >
                 <h1>Fun, easy and reliable estimations</h1>
-                <p>Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor.</p>
+                <p>Estimate time and effort in real time with your team and ensure the most accurate history points for your project.</p>
                 <Button as="a" href={paths.newGame}>Start new game</Button>
               </Box>
-              <Image width={400} src={cardsImg} alt="cards" />
+              <Image priority width={400} src={cardsImg} alt="cards" />
             </Styles.Box1>
           </Container>
         </Styles.Section>

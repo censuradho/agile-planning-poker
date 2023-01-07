@@ -2,9 +2,9 @@
 # Agile methodology | Planning poker free
 
 Vote and estimate issues in realtime in an agile way with planning poker free. 
+![Group 2](https://user-images.githubusercontent.com/49209628/211171772-44c72da7-24eb-4b88-a966-c76e3a15c9a6.png)
 
 ## ✨ Features
-
 
 <details>
   <summary>Application</summary>

@@ -67,23 +67,25 @@ export function PlayerRegister (props: PlayerRegisterProps) {
     <Styles.Root {...props}>
       <Styles.Portal>
         <Styles.Overlay />
-        <Styles.Content>
-          <Typography size="md">Choose your display name</Typography>
-          <Styles.Form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              id="name"
-              register={register('name')}
-              errorMessage={errors?.name?.message}
-              label="your display name"
-            />
-            <Box marginTop={2}>
-              <Button
-                fullWidth
-                loading={isLoading}
-              >Continue to game</Button>
-            </Box>
-          </Styles.Form>
-        </Styles.Content>
+        <Styles.OverlayGray>
+          <Styles.Content>
+            <Typography size="md">Choose your display name</Typography>
+            <Styles.Form onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                id="name"
+                register={register('name')}
+                errorMessage={errors?.name?.message}
+                label="your display name"
+              />
+              <Box marginTop={2}>
+                <Button
+                  fullWidth
+                  loading={isLoading}
+                >Continue to game</Button>
+              </Box>
+            </Styles.Form>
+          </Styles.Content>
+        </Styles.OverlayGray>
       </Styles.Portal>
     </Styles.Root>
   )

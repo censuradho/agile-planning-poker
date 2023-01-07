@@ -15,7 +15,13 @@ export const Overlay = styled(AlertDialog.Overlay, {
   position: 'fixed',
   inset: 0,
   animation: `${overlayShow} backward 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
-  backdropFilter: 'blur(5px)'
+  backdropFilter: 'blur(5px)',
+  filter: 'grayscale(100%)'
+})
+
+export const OverlayGray = styled('div', {
+  width: '100%',
+  height: '100%'
 })
 
 export const Root = styled(AlertDialog.Root, {

@@ -17,12 +17,9 @@ export const Overlay = styled(AlertDialog.Overlay, {
   animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`
 })
 
-export const Root = styled(AlertDialog.Root, {
-})
+export const Root = styled(AlertDialog.Root, {})
 
-export const Portal = styled(AlertDialog.Portal, {
-
-})
+export const Portal = styled(AlertDialog.Portal, {})
 
 export const Trigger = styled(AlertDialog.Trigger, {})
 

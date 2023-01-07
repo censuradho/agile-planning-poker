@@ -30,13 +30,30 @@ export function CookieWarn () {
   return (
     <Styles.Container>
       <Styles.Content>
-        <Box alignItems="center" justifyContent="space-between" gap={4}>
+        <Box
+          alignItems="center"
+          justifyContent="space-between"
+          gap={4}
+          flexDirection={{
+            '@initial': 'column',
+            '@table-min': 'row'
+          }}>
           <Box flexDirection="column" gap={0.5}>
-            <Typography>
+            <Typography
+              textAlign={{
+                '@initial': 'center',
+                '@table-min': 'left'
+              }}
+            >
           We use cookies on this website to improve your user experience.
           For a complete overview of all cookies used, please see your personal settings.
             </Typography>
-            <Typography>For more information, consult the <Link href="">privacy policies</Link></Typography>
+            <Typography
+              textAlign={{
+                '@initial': 'center',
+                '@table-min': 'left'
+              }}
+            >For more information, consult the <Link href="">privacy policies</Link></Typography>
           </Box>
           <Button onClick={handleAccept}>I agree</Button>
         </Box>

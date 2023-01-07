@@ -12,9 +12,12 @@ Vote and estimate issues in realtime in an agile way with planning poker free.
   <ul>
     <li>Is realtime, all changes are reflected in realtime for all players</li>
     <li>Create issues to be voted on</li>
-    <li>Vote and rate with the fobonacci system</li>
-    <li>Remove players</li>
+    <li>Remove issues from board</li>
     <li>Issue featured</li>
+    <li>Vote and rate with the fobonacci system</li>
+    <li>players joins</li>
+    <li>player display name</li>
+    <li>Remove players</li>
     <li>Featured on current player</li>
     <li>Countdown to display estimates</li>
     <li>Cards with estimates hidden until the end of the countdown</li>

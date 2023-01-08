@@ -20,6 +20,8 @@ import { useAuth } from 'context/auth'
 import { useInterval } from 'hooks'
 import { logEvent } from 'lib/analytics'
 import { ANALYTICS_EVENTS } from 'constants/analytics'
+import { signOut } from 'lib/auth'
+import { paths } from 'constants/routes'
 
 const BoardContext = createContext({} as BoardContextParams)
 const baseCountDown = 3
@@ -137,7 +139,11 @@ export function BoardProvider ({ children }: any) {
   }
 
   const handleRemovePlayer = async (userId: string) => {
+    router.push(paths.home)
+
     const playersFiltered = players.filter(player => player.id !== userId)
+
+    await signOut()
 
     await updateBoard(id as string, {
       players: playersFiltered

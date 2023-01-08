@@ -12,6 +12,8 @@ import { paths } from 'constants/routes'
 import Image from 'next/image'
 
 import Logo from 'public/logo-full.svg'
+import { useRouter } from 'next/router'
+import { resolvePath } from 'utils/helpers'
 
 const PlayerRegister = dynamic(() => import('./components').then(mod => mod.PlayerRegister), {
   ssr: false
@@ -19,6 +21,7 @@ const PlayerRegister = dynamic(() => import('./components').then(mod => mod.Play
 
 export function BoardLayout () {
   const auth = useAuth()
+  const router = useRouter()
 
   const {
     board,
@@ -105,6 +108,12 @@ export function BoardLayout () {
     )
   }
 
+  const handleShare = async () => {
+    const fullUrl = `${window.location.origin}${resolvePath(paths.board, { id: router.query.id })}`
+
+    await navigator.clipboard.writeText(fullUrl)
+  }
+
   return (
     <>
       <PlayerRegister open={(player && !player?.name) || !auth.isSigned} />
@@ -122,7 +131,10 @@ export function BoardLayout () {
         </Styles.Header>
         <Styles.Main>
           <Box flexDirection="column" gap={2}>
-            {renderPlayerAvatar()}
+            <Box justifyContent="space-between">
+              {renderPlayerAvatar()}
+              <Button variant="stroke" onClick={handleShare}>Share</Button>
+            </Box>
             {renderCurrentIssue()}
           </Box>
           <Box

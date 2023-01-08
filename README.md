@@ -32,3 +32,14 @@ Vote and estimate issues in realtime in an agile way with planning poker free.
     <li>Google analytics 4</li>
   </ul>
   </details>
+
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if
+          request.time < timestamp.date(2023, 7, 10);
+    }
+  }
+}

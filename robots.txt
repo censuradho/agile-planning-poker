@@ -1,0 +1,5 @@
+User-agent: *
+
+Disallow: /new-game
+Disallow: /board/
+Disallow: /board/*

@@ -5,7 +5,7 @@ import {
   useMemo,
   useState
 } from 'react'
-import { doc, onSnapshot } from 'firebase/firestore'
+import { collection, doc, onSnapshot } from 'firebase/firestore'
 
 import {
   Board,
@@ -165,7 +165,8 @@ export function BoardProvider ({ children }: any) {
     if (!id) return
 
     const unsubscribe = onSnapshot(doc(firestore, COLLECTION_BOARD, id as string), (doc) => {
-      setBoard(doc.data() as Board)
+      const boardData = doc.data() as Board
+      setBoard(boardData)
       setIsLoaded(true)
     })
     return () => unsubscribe()

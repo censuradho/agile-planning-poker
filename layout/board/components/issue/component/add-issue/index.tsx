@@ -55,8 +55,8 @@ export function AddIssue (props: AddIssueProps) {
             fullWidth
             variant="letter"
             onClick={() => setIsEditting(false)}
-          >Cancelar</Button>
-          <Button fullWidth>Salvar</Button>
+          >Cancel</Button>
+          <Button fullWidth>Save</Button>
         </Box>
       </Styles.Form>
     )

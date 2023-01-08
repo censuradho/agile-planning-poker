@@ -5,7 +5,7 @@ export function Head (props: HeadProps) {
   const {
     description,
     title,
-    image = `${window.location.origin}/social-share-banner.jpg`,
+    image = 'https://agile-planning-poker.vercel.app/social-share-banner.jpg',
     og,
     twitter
   } = props

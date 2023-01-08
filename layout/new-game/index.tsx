@@ -32,30 +32,26 @@ export function NewGameLayout () {
   })
 
   const onSubmit = async (payload: NewGameFormData) => {
-    try {
-      setIsLoading(true)
+    setIsLoading(true)
 
-      const board = await createBoard({
-        ...payload
+    const board = await createBoard({
+      ...payload
+    })
+
+    if (auth?.isSigned && auth.user) {
+      await createPlayer(board.id, {
+        id: auth.user.uid,
+        name: auth.user.displayName || '',
+        isAnonymous: auth.user?.isAnonymous,
+        role: Roles.admin
       })
 
-      if (auth?.isSigned && auth.user) {
-        await createPlayer(board.id, {
-          id: auth.user.uid,
-          name: auth.user.displayName || '',
-          isAnonymous: auth.user?.isAnonymous,
-          role: Roles.admin
-        })
-
-        logEvent(ANALYTICS_EVENTS.PLAYER_JOIN, {
-          id: auth.user.uid
-        })
-      }
-
-      router.push(resolvePath(paths.board, { id: board.id }))
-    } finally {
-      setIsLoading(false)
+      logEvent(ANALYTICS_EVENTS.PLAYER_JOIN, {
+        id: auth.user.uid
+      })
     }
+
+    router.push(resolvePath(paths.board, { id: board.id }))
   }
 
   return (
@@ -85,6 +81,7 @@ export function NewGameLayout () {
               id="name"
               register={register('name')}
               errorMessage={errors?.name?.message}
+              maxLength={50}
             />
           </Box>
           <Box marginTop={2}>

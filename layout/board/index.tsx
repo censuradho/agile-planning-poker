@@ -114,7 +114,7 @@ export function BoardLayout () {
             <Link href={paths.home}>
               <Image height={35} src={Logo} alt="logo" />
             </Link>
-            {board?.name && <Typography color="heading" fontWeight="600">{' '}{board?.name}</Typography>}
+            {board?.name && <Styles.BoardName>{board?.name}</Styles.BoardName>}
           </Box>
           <Box justifyContent="flex-end" flex={1}>
             <Issue />

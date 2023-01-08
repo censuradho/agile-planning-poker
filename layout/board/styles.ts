@@ -56,3 +56,21 @@ export const PlayerName = styled('strong', {
     }
   }
 })
+
+export const BoardName = styled('strong', {
+  color: '$heading',
+  fontWeight: 600,
+  display: 'block',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  flex: 1,
+  width: '100px',
+
+  '@smartphone-min': {
+    width: '200px'
+  },
+  '@laptops-min': {
+    width: '500px'
+  }
+})

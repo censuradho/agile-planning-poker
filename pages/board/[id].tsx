@@ -1,7 +1,13 @@
+import { Head } from 'components/common/head'
 import { BoardLayout } from 'layout/board'
 
 export default function BoardPage () {
   return (
-    <BoardLayout />
+    <>
+      <Head
+        title="Board"
+      />
+      <BoardLayout />
+    </>
   )
 }

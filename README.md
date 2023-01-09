@@ -33,16 +33,30 @@ Vote and estimate issues in realtime in an agile way with planning poker free.
   </ul>
   </details>
 
+## Requirements
+[Node.js 16v >=](https://nodejs.org/en/)
+
 ## 🎌 Getting Started
 
 ```bash
-git clone https://github.com/censuradho/blog-next.git
-cd blog-next
-yarn
+$ git clone https://github.com/censuradho/blog-next.git
+
+$ cd blog-next
+
+$ npm install
+# or
+$ yarn 
 
 # Development
-yarn dev
+$ npm run dev
+# or 
+$ yarn dev
 
 # Production
-yarn build
+
+$ npm run build 
+$ npm run start
+#or
+$ yarn build
+$ yarn start
 ```

@@ -39,9 +39,9 @@ Vote and estimate issues in realtime in an agile way with planning poker free.
 ## 🎌 Getting Started
 
 ```bash
-$ git clone https://github.com/censuradho/blog-next.git
+$ git clone https://github.com/censuradho/agile-planning-poker.git
 
-$ cd blog-next
+$ cd agile-planning-poker
 
 $ npm install
 # or
